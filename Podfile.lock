@@ -1,0 +1,30 @@
+PODS:
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
+  - ChameleonFramework/Default (2.1.0)
+  - M13ProgressSuite (1.2.9)
+  - SnapKit (4.0.1)
+  - ViewAnimator (2.2.0)
+
+DEPENDENCIES:
+  - ChameleonFramework
+  - M13ProgressSuite
+  - SnapKit (~> 4.0.0)
+  - ViewAnimator
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ChameleonFramework
+    - M13ProgressSuite
+    - SnapKit
+    - ViewAnimator
+
+SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  ViewAnimator: a849844cc3698620e1a562b510ed0c28aeafcdc5
+
+PODFILE CHECKSUM: 14f298f85dcbe044817bd2f81f7a2a3afa4c4b83
+
+COCOAPODS: 1.5.3
