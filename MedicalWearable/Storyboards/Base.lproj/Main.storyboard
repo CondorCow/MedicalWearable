@@ -10,6 +10,34 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Information-->
+        <scene sceneID="P40-hp-EIW">
+            <objects>
+                <tableViewController title="Information" id="UCa-AN-YZo" customClass="InformationViewController" customModule="MedicalWearable" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vI2-4z-tus">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="InformationCell" id="J01-ZR-kSQ">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J01-ZR-kSQ" id="Ua8-YV-gil">
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="UCa-AN-YZo" id="gfF-Eg-GsL"/>
+                            <outlet property="delegate" destination="UCa-AN-YZo" id="jjC-Ll-9xW"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uuR-iT-MPy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1614" y="991"/>
+        </scene>
         <!--Heart Rate Monitor-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -103,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNf-rD-E1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2556" y="-253"/>
+            <point key="canvasLocation" x="2556" y="-253.2233883058471"/>
         </scene>
         <!--Menu-->
         <scene sceneID="k2Q-cT-K4N">
@@ -170,6 +198,7 @@
                         <outlet property="heartRateLabel" destination="XM5-Y4-3Bo" id="abr-Pf-LqW"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToHeartRateMonitor" id="Ne9-bW-Lcz"/>
                         <segue destination="8mi-HW-Ri4" kind="show" identifier="goToBloodPressureMonitor" id="lYb-tt-HBh"/>
+                        <segue destination="UCa-AN-YZo" kind="show" identifier="goToInformation" id="Z86-z8-nqM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOI-Zb-X2j" userLabel="First Responder" sceneMemberID="firstResponder"/>

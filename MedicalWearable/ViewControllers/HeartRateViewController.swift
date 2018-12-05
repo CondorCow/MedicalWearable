@@ -12,7 +12,7 @@ import M13ProgressSuite
 import ChameleonFramework
 
 class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
-    
+
     var manager: CBCentralManager!
     var mioLink: CBPeripheral!
     @IBOutlet weak var bodyLocationLabel: UITextView!
@@ -26,8 +26,16 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil)
+        
         progressHUD = M13ProgressHUD(progressView: M13ProgressViewPie())
         addProgressHUD()
+        bodyLocationLabel.textColor = UIColor.flatGray()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
@@ -178,11 +186,33 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
             print("Bluetooth status is UNAUTHORIZED")
         case .poweredOff:
             print("Bluetooth status is POWERED OFF")
+            showBluetoothOffError()
         case .poweredOn:
             print("Bluetooth status is POWERED ON")
             manager.scanForPeripherals(withServices: nil, options: nil)
         default: break
         }
+    }
+    
+    func showBluetoothOffError() {
+        let alert = UIAlertController(title: "Schakel Bluetooth in om 'MedicalWearable' verbinding te laten maken met accessoires", message: "", preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Instellingen", style: .cancel, handler: { (action) in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: nil)
+            }
+        })
+        
+        alert.addAction(settingsAction)
+        
+        let cancelAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     func addProgressHUD(){
@@ -212,5 +242,15 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
     
     override func viewWillDisappear(_ animated: Bool) {
         manager?.stopScan()
+        finishedSearch = false
+    }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        manager?.scanForPeripherals(withServices: nil, options: nil)
+//    }
+    
+    @objc func willEnterForeground(_ notification: NSNotification!) {
+        timeOutRunning = false
+        manager?.scanForPeripherals(withServices: nil, options: nil)
     }
 }

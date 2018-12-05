@@ -9,8 +9,11 @@
 import UIKit
 import SnapKit
 import ViewAnimator
+import Floaty
 
 class MenuViewController: UIViewController {
+    
+    let floaty = Floaty()
 
     @IBOutlet weak var heartRateButton: UIButton!
     @IBOutlet weak var bloodPressureButton: UIButton!
@@ -20,14 +23,12 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.navigationBar.barTintColor = UIColor.flatMint()
         
         addContainer()
         setupConstraints()
-        
         animateViews(withDelay: 0.3, withDuration: 0.3)
-        
-        navigationController?.navigationBar.barTintColor = UIColor.flatMint()
+        addFloaty()
     }
 
     private func addContainer(){
@@ -36,18 +37,23 @@ class MenuViewController: UIViewController {
         
         //Heart Rate Button
         heartRateButton.layer.cornerRadius = 50
-        heartRateButton.backgroundColor = UIColor.flatMint()
+        heartRateButton.backgroundColor = UIColor.flatRed()
         buttonsContainer.addSubview(heartRateButton)
         
         //Blood Pressure Button
         bloodPressureButton.layer.cornerRadius = 50
-        bloodPressureButton.backgroundColor = UIColor.flatRed()
+        bloodPressureButton.backgroundColor = UIColor.flatMint()
         buttonsContainer.addSubview(bloodPressureButton)
         
         //Labels below buttons
         heartRateLabel.text = "Heart Rate Monitor"
-        bloodPressureLabel.text = "Blood Pressure Monitor"
+//        bloodPressureLabel.text = "Blood Pressure Monitor"
         
+        //TODO: Strikethrough label because Blood Pressure is not yet implemented
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Blood Pressure Monitor")
+        attributeString.addAttribute(.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+        bloodPressureLabel.attributedText = attributeString
+
         buttonsContainer.addSubview(heartRateLabel)
         buttonsContainer.addSubview(bloodPressureLabel)
     }
@@ -117,6 +123,30 @@ class MenuViewController: UIViewController {
                                 delay: delay + 0.2,
                                 duration: duration,
                                 completion: nil)
+    }
+    
+    func addFloaty(){
+        //Floating action button itself
+        floaty.buttonColor = UIColor.flatRed()
+        floaty.plusColor = UIColor.white
+        
+        //Information button
+        let informationItem = FloatyItem()
+        informationItem.icon = UIImage(named: "info-icon.png")
+        informationItem.handler = {(item) in
+            self.performSegue(withIdentifier: "goToInformation", sender: self)
+        }
+        floaty.addItem(item: informationItem)
+        
+        //Help button
+        let helpItem = FloatyItem()
+        helpItem.icon = UIImage(named: "questionmark-icon.png")
+        helpItem.handler = {(item) in
+            
+        }
+        floaty.addItem(item: helpItem)
+        
+        self.view.addSubview(floaty)
     }
     
     @IBAction func heartRateButtonPressed(_ sender: UIButton) {
