@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		300F233721AD93C10067B40A /* BloodPressureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300F233621AD93C10067B40A /* BloodPressureViewController.swift */; };
 		304CDF3921B80D7A006F6667 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CDF3821B80D7A006F6667 /* InformationViewController.swift */; };
+		30CACBF421CB93DF0068E0B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30CACBF321CB93DF0068E0B7 /* Assets.xcassets */; };
 		30CEA92721A8339400028CF5 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CEA92621A8339400028CF5 /* MenuViewController.swift */; };
 		30DAC95521A6EFBE000D3072 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAC95421A6EFBE000D3072 /* AppDelegate.swift */; };
 		30DAC95721A6EFBE000D3072 /* HeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAC95621A6EFBE000D3072 /* HeartRateViewController.swift */; };
 		30DAC95A21A6EFBE000D3072 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DAC95821A6EFBE000D3072 /* Main.storyboard */; };
 		30DAC95F21A6EFC5000D3072 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DAC95D21A6EFC5000D3072 /* LaunchScreen.storyboard */; };
-		30DAC96721A6F0B5000D3072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DAC96621A6F0B5000D3072 /* Assets.xcassets */; };
 		589F32D40C5FA4B462AF36A5 /* Pods_MedicalWearable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A162351DF087E788D1069C /* Pods_MedicalWearable.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +22,7 @@
 		0ADF6D11551E48B47BF3B389 /* Pods-MedicalWearable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedicalWearable.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedicalWearable/Pods-MedicalWearable.release.xcconfig"; sourceTree = "<group>"; };
 		300F233621AD93C10067B40A /* BloodPressureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodPressureViewController.swift; sourceTree = "<group>"; };
 		304CDF3821B80D7A006F6667 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		30CACBF321CB93DF0068E0B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30CEA92621A8339400028CF5 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		30DAC95121A6EFBE000D3072 /* MedicalWearable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedicalWearable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DAC95421A6EFBE000D3072 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -29,7 +30,6 @@
 		30DAC95921A6EFBE000D3072 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		30DAC95E21A6EFC5000D3072 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30DAC96021A6EFC5000D3072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		30DAC96621A6F0B5000D3072 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Downloads/Assets.xcassets; sourceTree = "<group>"; };
 		33A162351DF087E788D1069C /* Pods_MedicalWearable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MedicalWearable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08C5B74FD40D8EB9E1F70E2 /* Pods-MedicalWearable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedicalWearable.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MedicalWearable/Pods-MedicalWearable.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,8 +98,8 @@
 				304CDF3B21B81997006F6667 /* Storyboards */,
 				304CDF3A21B81982006F6667 /* ViewControllers */,
 				30DAC95421A6EFBE000D3072 /* AppDelegate.swift */,
-				30DAC96621A6F0B5000D3072 /* Assets.xcassets */,
 				30DAC96021A6EFC5000D3072 /* Info.plist */,
+				30CACBF321CB93DF0068E0B7 /* Assets.xcassets */,
 			);
 			path = MedicalWearable;
 			sourceTree = "<group>";
@@ -174,7 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30DAC95F21A6EFC5000D3072 /* LaunchScreen.storyboard in Resources */,
-				30DAC96721A6F0B5000D3072 /* Assets.xcassets in Resources */,
+				30CACBF421CB93DF0068E0B7 /* Assets.xcassets in Resources */,
 				30DAC95A21A6EFBE000D3072 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

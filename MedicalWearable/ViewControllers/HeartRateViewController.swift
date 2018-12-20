@@ -12,7 +12,8 @@ import M13ProgressSuite
 import ChameleonFramework
 
 class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
-
+    let wearableName = "Medical Wearable"
+    
     var manager: CBCentralManager!
     var mioLink: CBPeripheral!
     @IBOutlet weak var bodyLocationLabel: UITextView!
@@ -20,9 +21,12 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
     
     var finishedSearch: Bool = false
     var timeOutRunning: Bool = false
+    let heartRateBytes: [UInt8] = [0x69, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,0x00,0x00,0x00,0x00, 0x6A]
+    let bloodPressureBytes: [UInt8] = [0x69, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,0x00,0x00,0x00,0x00, 0x6B]
+    let showResultBytes: [UInt8] = [0x6A, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,0x00,0x00,0x00,0x00, 0x6B]
     
     var progressHUD: M13ProgressHUD!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = CBCentralManager(delegate: self, queue: nil)
@@ -40,30 +44,32 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print("Name: \(peripheral.name)")
+        print("Identifier: \(peripheral.identifier)")
         if progressHUD.progress != 0.15 {
-            changeProgressHudStatus(progressValue: 0.15, withStatus: "Searching for MioLink")
+            changeProgressHudStatus(progressValue: 0.15, withStatus: "Searching for \(wearableName)")
         }
+        
         if !timeOutRunning {
             timeOutRunning = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
                 print("Timeout reached")
                 if !self.finishedSearch {
                     self.progressHUD.hide(true)
-                    let alert = UIAlertController(title: "Error", message: "No MioLink found", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error", message: "No \(self.wearableName) found", preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         self.navigationController?.popViewController(animated: true)
                         self.dismiss(animated: true, completion: nil)
                     })
-
+                    
                     alert.addAction(action)
                     self.present(alert, animated: true, completion: nil)
                 }
             }
         }
-        if peripheral.name?.contains("MIO") == true{
+        if(peripheral.identifier.uuidString.contains("14140") || peripheral.name?.contains("C80_80") == true) {
             finishedSearch = true
-            print("Mio found")
-            changeProgressHudStatus(progressValue: 0.55, withStatus: "Connecting to MioLink")
+            print("Q8 found")
+            changeProgressHudStatus(progressValue: 0.55, withStatus: "Connecting to \(wearableName)")
             self.mioLink = peripheral
             self.mioLink.delegate = self
             
@@ -77,6 +83,7 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
         if let servicePeripherals = peripheral.services as [CBService]!
         {
             for service in servicePeripherals{
+                print("Service uuid: \(service.uuid)")
                 peripheral.discoverCharacteristics(nil, for: service)
             }
         }
@@ -103,14 +110,14 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
         if let characteristicArray = service.characteristics as [CBCharacteristic]!
         {
             for cc in characteristicArray{
-//                print(cc.uuid.uuidString)
-                if(cc.uuid.uuidString == "2A38"){
-                    print("Body location found")
-                    peripheral.readValue(for: cc)
-                }
-                if(cc.uuid.uuidString == "2A37"){
-                    print("Heart rate found")
+                print("UUID ", cc.uuid.uuidString)
+                
+                // 00003: TX for reading values, 00002: RX for writing values
+                if cc.uuid.uuidString == "6E400003-B5A3-F393-E0A9-E50E24DCCA9E" {
                     peripheral.setNotifyValue(true, for: cc)
+                }
+                if cc.uuid.uuidString == "6E400002-B5A3-F393-E0A9-E50E24DCCA9E" {
+                    peripheral.writeValue(Data(bytes: heartRateBytes), for: cc, type: .withResponse)
                 }
             }
             if progressHUD.progress != 0.95 {
@@ -120,39 +127,53 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
         }
     }
     
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor descriptor: CBDescriptor, error: Error?) {
+        print("Value written")
+    }
+    
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         if progressHUD.isVisible() {
             progressHUD.hide(true)
             print("Done")
         }
+        print("Characteristic UUID: ", characteristic.uuid)
+        //        print([UInt8](characteristic.value!))
+        
         switch characteristic.uuid {
-        case CBUUID(string: "2A38"):
-            let bodySensorLocation = bodyLocation(from: characteristic)
-            bodyLocationLabel.text = bodySensorLocation
-        //            print(characteristic.value ?? "no value")
-        case CBUUID(string: "2A37"):
+        case CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"):
             let bpm = heartRate(from: characteristic)
-            onHeartRateReceived(bpm: bpm)
+            onHeartRateReceived(bpm: bpm, peripheral, characteristic)
+            print(bpm)
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
     }
     
-    private func onHeartRateReceived(bpm: Int){
-        heartRateLabel.text = String(bpm)
+    private func onHeartRateReceived(bpm: Int, _ peripheral: CBPeripheral, _ cc: CBCharacteristic) {
+        if bpm != 0 {
+            heartRateLabel.layer.removeAllAnimations()
+            heartRateLabel.alpha = 1.0
+            heartRateLabel.text = String(bpm)
+            
+            //Send to show heartrate on screen
+//            peripheral.writeValue(Data(bytes: showResultBytes), for: cc, type: .withResponse)
+        } else {
+            heartRateLabel.text = "- -"
+            UIView.animate(withDuration: 0.5, delay: 0.5, options: [.curveEaseOut, .repeat, .autoreverse], animations: {
+                self.heartRateLabel.alpha = 0.0
+            }, completion: nil)
+        }
     }
     
     private func heartRate(from characteristic: CBCharacteristic) -> Int {
         guard let characteristicData = characteristic.value else { return -1 }
         let byteArray = [UInt8](characteristicData)
         
-        let firstBitValue = byteArray[0] & 0x01
-        if firstBitValue == 0 {
-            // Heart Rate Value Format is in the 2nd byte
-            return Int(byteArray[1])
+        if byteArray.count == 16 {
+            //Heart rate is always in 4th byte
+            return Int(byteArray[3])
         } else {
-            // Heart Rate Value Format is in the 2nd and 3rd bytes
-            return (Int(byteArray[1]) << 8) + Int(byteArray[2])
+            return 0
         }
     }
     
@@ -163,7 +184,7 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Disconnected")
-        let alert = UIAlertController(title: "Connection error", message: "MioLink got disconnected. Please reconnect the MioLink.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Connection error", message: "\(wearableName) got disconnected. Please reconnect the \(wearableName).", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
             self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
@@ -174,7 +195,6 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        var msg = ""
         switch central.state {
         case .unknown:
             print("Bluetooth status is UNKNOWN")
@@ -195,7 +215,7 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
     }
     
     func showBluetoothOffError() {
-        let alert = UIAlertController(title: "Schakel Bluetooth in om 'MedicalWearable' verbinding te laten maken met accessoires", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Schakel Bluetooth in om '\(wearableName)' verbinding te laten maken met accessoires", message: "", preferredStyle: .alert)
         
         let settingsAction = UIAlertAction(title: "Instellingen", style: .cancel, handler: { (action) in
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
@@ -221,8 +241,8 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
         progressHUD.animationPoint = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
         progressHUD.primaryColor = UIColor.flatMint()
         progressHUD.secondaryColor = UIColor.flatMint()
-//        let window: UIWindow = UIApplication.shared.keyWindow!
-//        window.addSubview(progressHUD)
+        //        let window: UIWindow = UIApplication.shared.keyWindow!
+        //        window.addSubview(progressHUD)
         view.addSubview(progressHUD)
         
         //ProgressView
@@ -244,10 +264,6 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
         manager?.stopScan()
         finishedSearch = false
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        manager?.scanForPeripherals(withServices: nil, options: nil)
-//    }
     
     @objc func willEnterForeground(_ notification: NSNotification!) {
         timeOutRunning = false
