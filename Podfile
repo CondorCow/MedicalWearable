@@ -10,4 +10,5 @@ target 'MedicalWearable' do
     pod 'M13ProgressSuite'
     pod 'ViewAnimator'
     pod 'ChameleonFramework'
+    pod "Floaty", "~> 4.1.0"
 end
