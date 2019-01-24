@@ -23,7 +23,7 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = UIColor.flatMint()
+//        navigationController?.navigationBar.barTintColor = UIColor.flatMint()
         
         addContainer()
         setupConstraints()
@@ -42,7 +42,7 @@ class MenuViewController: UIViewController {
         
         //Blood Pressure Button
         bloodPressureButton.layer.cornerRadius = 50
-        bloodPressureButton.backgroundColor = UIColor.flatMint()
+        bloodPressureButton.backgroundColor = UIColor(hexString: "4e749b")
         buttonsContainer.addSubview(bloodPressureButton)
         
         //Labels below buttons

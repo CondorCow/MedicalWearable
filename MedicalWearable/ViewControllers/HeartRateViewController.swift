@@ -206,7 +206,7 @@ class HeartRateViewController: UIViewController, CBCentralManagerDelegate, CBPer
             print("Bluetooth status is UNAUTHORIZED")
         case .poweredOff:
             print("Bluetooth status is POWERED OFF")
-            showBluetoothOffError()
+//            showBluetoothOffError()
         case .poweredOn:
             print("Bluetooth status is POWERED ON")
             manager.scanForPeripherals(withServices: nil, options: nil)
