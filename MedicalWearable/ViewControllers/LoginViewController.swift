@@ -16,7 +16,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    var interactor = AuthInteractor()
+    let interactor = AuthInteractor()
+    let utils = ViewControllerUtils()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         passwordTextField.delegate = self
         
+        //TODO: Remove
         emailTextField.text = "danny.janssen@indicia.nl"
         passwordTextField.text = "password"
     }
@@ -47,6 +49,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
+        utils.showActivityIndicator(uiView: view)
         interactor.login(emailTextField.text!, passwordTextField.text!) { (success, title, message) in
             if success {
                 self.performSegue(withIdentifier: "goToMain", sender: self)
@@ -58,13 +61,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 alert.addAction(action)
                 self.present(alert, animated: true)
             }
+            self.utils.hideActivityIndicator(uiView: self.view)
         }
         
     }
     
-    @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue){
-        
-    }
+    @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue){}
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

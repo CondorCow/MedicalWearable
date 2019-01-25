@@ -164,6 +164,8 @@ class MenuViewController: UIViewController {
             self.interactor.logout{ isSuccess in
                 if isSuccess {
                     self.performSegue(withIdentifier: "unwindSegueToLogin", sender: self)
+                } else {
+                    print("Token removal failed.")
                 }
             }
         }

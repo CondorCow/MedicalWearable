@@ -50,6 +50,7 @@ class AuthInteractor {
     }
     
     func logout(_ callback: (_ success: Bool) -> Void) {
-        callback(true)
+//        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(key: "token")
+        callback(KeychainWrapper.standard.removeObject(forKey: "token"))
     }
 }

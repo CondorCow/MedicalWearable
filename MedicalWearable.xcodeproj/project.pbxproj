@@ -13,6 +13,7 @@
 		304C10B221F9FBDD007AB61A /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304C10B121F9FBDD007AB61A /* AuthInteractor.swift */; };
 		304CDF3921B80D7A006F6667 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CDF3821B80D7A006F6667 /* InformationViewController.swift */; };
 		306456FA21CCEA3B0069ABCF /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306456F921CCEA3B0069ABCF /* UIColorHex.swift */; };
+		30960CDF21FB432900C96AF7 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30960CDE21FB432900C96AF7 /* ViewControllerUtils.swift */; };
 		30CACBF421CB93DF0068E0B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30CACBF321CB93DF0068E0B7 /* Assets.xcassets */; };
 		30CEA92721A8339400028CF5 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CEA92621A8339400028CF5 /* MenuViewController.swift */; };
 		30DAC95521A6EFBE000D3072 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAC95421A6EFBE000D3072 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 		304C10B121F9FBDD007AB61A /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
 		304CDF3821B80D7A006F6667 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		306456F921CCEA3B0069ABCF /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
+		30960CDE21FB432900C96AF7 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		30CACBF321CB93DF0068E0B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30CEA92621A8339400028CF5 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		30DAC95121A6EFBE000D3072 /* MedicalWearable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedicalWearable.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +98,7 @@
 			children = (
 				306456F921CCEA3B0069ABCF /* UIColorHex.swift */,
 				304C10AE21F9ED48007AB61A /* Variables.swift */,
+				30960CDE21FB432900C96AF7 /* ViewControllerUtils.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				300F233721AD93C10067B40A /* MonitorViewController.swift in Sources */,
 				30DAC95721A6EFBE000D3072 /* HeartRateViewController.swift in Sources */,
 				304C10AF21F9ED48007AB61A /* Variables.swift in Sources */,
+				30960CDF21FB432900C96AF7 /* ViewControllerUtils.swift in Sources */,
 				30CEA92721A8339400028CF5 /* MenuViewController.swift in Sources */,
 				306456FA21CCEA3B0069ABCF /* UIColorHex.swift in Sources */,
 				30DAC95521A6EFBE000D3072 /* AppDelegate.swift in Sources */,
