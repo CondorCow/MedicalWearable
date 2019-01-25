@@ -164,7 +164,7 @@ class MenuViewController: UIViewController {
             self.interactor.logout{ isSuccess in
                 if isSuccess {
                     self.performSegue(withIdentifier: "unwindSegueToLogin", sender: self)
-                }ß
+                }
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { result in
