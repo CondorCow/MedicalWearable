@@ -12,4 +12,7 @@ target 'MedicalWearable' do
     pod 'ChameleonFramework'
     pod "Floaty", "~> 4.1.0"
     pod 'ABGaugeViewKit'
+    pod 'Alamofire', '~> 4.7'
+    pod 'SwiftyJSON', '~> 4.0'
+    pod 'SwiftKeychainWrapper'
 end

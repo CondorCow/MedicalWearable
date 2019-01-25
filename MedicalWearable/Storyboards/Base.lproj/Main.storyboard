@@ -200,9 +200,11 @@
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goToHeartRateMonitor" id="Ne9-bW-Lcz"/>
                         <segue destination="8mi-HW-Ri4" kind="show" identifier="goToBloodPressureMonitor" id="lYb-tt-HBh"/>
                         <segue destination="UCa-AN-YZo" kind="show" identifier="goToInformation" id="Z86-z8-nqM"/>
+                        <segue destination="lbn-W0-6g8" kind="unwind" identifier="unwindSegueToLogin" unwindAction="unwindToLoginViewControllerWithSegue:" id="weZ-mw-QkH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOI-Zb-X2j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="lbn-W0-6g8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1613.5999999999999" y="131.78410794602701"/>
         </scene>
@@ -269,8 +271,9 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="LhI-lP-QWV" id="mJz-T1-HIv"/>
+                        <outlet property="loginButton" destination="JBz-28-eun" id="aNw-dV-W7a"/>
                         <outlet property="passwordTextField" destination="MNO-Ye-7Tw" id="v5c-DK-Oqp"/>
-                        <segue destination="c3L-qk-102" kind="show" id="8vG-bS-rQm"/>
+                        <segue destination="c3L-qk-102" kind="show" identifier="goToMain" id="8vG-bS-rQm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13E-pI-fLq" userLabel="First Responder" sceneMemberID="firstResponder"/>

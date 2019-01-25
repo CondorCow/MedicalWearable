@@ -14,6 +14,7 @@ import Floaty
 class MenuViewController: UIViewController {
     
     let floaty = Floaty()
+    let interactor = AuthInteractor()
 
     @IBOutlet weak var heartRateButton: UIButton!
     @IBOutlet weak var bloodPressureButton: UIButton!
@@ -133,7 +134,7 @@ class MenuViewController: UIViewController {
         //Information button
         let informationItem = FloatyItem()
         informationItem.icon = UIImage(named: "info-icon.png")
-        informationItem.handler = {(item) in
+        informationItem.handler = { item in
             self.performSegue(withIdentifier: "goToInformation", sender: self)
         }
         floaty.addItem(item: informationItem)
@@ -141,12 +142,38 @@ class MenuViewController: UIViewController {
         //Help button
         let helpItem = FloatyItem()
         helpItem.icon = UIImage(named: "questionmark-icon.png")
-        helpItem.handler = {(item) in
+        helpItem.handler = { item in
             
         }
         floaty.addItem(item: helpItem)
         
+        //Logout button
+        let logoutItem = FloatyItem()
+        logoutItem.icon = UIImage(named: "log-out-icon.png")
+        logoutItem.handler = { item in
+            self.logOut()
+        }
+        floaty.addItem(item: logoutItem)
+        
         self.view.addSubview(floaty)
+    }
+    
+    func logOut() {
+        let alert = UIAlertController(title: "Log uit", message: "Weet je zeker dat je wil uitloggen?", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "OK", style: .default) { result in
+            self.interactor.logout{ isSuccess in
+                if isSuccess {
+                    self.performSegue(withIdentifier: "unwindSegueToLogin", sender: self)
+                }ß
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { result in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func heartRateButtonPressed(_ sender: UIButton) {

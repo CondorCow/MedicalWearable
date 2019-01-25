@@ -7,28 +7,73 @@
 //
 
 import UIKit
+import Alamofire
+import SnapKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    
+    var interactor = AuthInteractor()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setConstraints()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
+        passwordTextField.delegate = self
+        
+        emailTextField.text = "danny.janssen@indicia.nl"
+        passwordTextField.text = "password"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setConstraints() {
+        emailTextField.snp.makeConstraints{ make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(50)
+            make.trailing.equalToSuperview().inset(50)
+        }
+        
+        passwordTextField.snp.makeConstraints{ make in
+            make.top.equalTo(emailTextField.snp.bottom).offset(20)
+            make.leading.equalTo(emailTextField)
+            make.trailing.equalTo(emailTextField)
+        }
     }
-    */
+    
     @IBAction func loginButtonPressed(_ sender: Any) {
+        interactor.login(emailTextField.text!, passwordTextField.text!) { (success, title, message) in
+            if success {
+                self.performSegue(withIdentifier: "goToMain", sender: self)
+            } else {
+                var alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                var action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alert.dismiss(animated: true, completion: nil)
+                })
+                alert.addAction(action)
+                self.present(alert, animated: true)
+            }
+        }
+        
     }
     
+    @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue){
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        loginButton.sendActions(for: .touchUpInside)
+        return true
+    }
+    
+    @objc func dismissKeyboard(){
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
 }

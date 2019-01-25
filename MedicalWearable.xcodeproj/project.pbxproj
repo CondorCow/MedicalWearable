@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3006503721F9E9C900EFDC80 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3006503621F9E9C900EFDC80 /* LoginViewController.swift */; };
 		300F233721AD93C10067B40A /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300F233621AD93C10067B40A /* MonitorViewController.swift */; };
+		304C10AF21F9ED48007AB61A /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304C10AE21F9ED48007AB61A /* Variables.swift */; };
+		304C10B221F9FBDD007AB61A /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304C10B121F9FBDD007AB61A /* AuthInteractor.swift */; };
 		304CDF3921B80D7A006F6667 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CDF3821B80D7A006F6667 /* InformationViewController.swift */; };
 		306456FA21CCEA3B0069ABCF /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306456F921CCEA3B0069ABCF /* UIColorHex.swift */; };
 		30CACBF421CB93DF0068E0B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30CACBF321CB93DF0068E0B7 /* Assets.xcassets */; };
@@ -24,6 +26,8 @@
 		0ADF6D11551E48B47BF3B389 /* Pods-MedicalWearable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedicalWearable.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedicalWearable/Pods-MedicalWearable.release.xcconfig"; sourceTree = "<group>"; };
 		3006503621F9E9C900EFDC80 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		300F233621AD93C10067B40A /* MonitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorViewController.swift; sourceTree = "<group>"; };
+		304C10AE21F9ED48007AB61A /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
+		304C10B121F9FBDD007AB61A /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
 		304CDF3821B80D7A006F6667 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		306456F921CCEA3B0069ABCF /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
 		30CACBF321CB93DF0068E0B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +62,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		304C10B021F9FBC4007AB61A /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				304C10B121F9FBDD007AB61A /* AuthInteractor.swift */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
 		304CDF3A21B81982006F6667 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				306456F921CCEA3B0069ABCF /* UIColorHex.swift */,
+				304C10AE21F9ED48007AB61A /* Variables.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -108,6 +121,7 @@
 		30DAC95321A6EFBE000D3072 /* MedicalWearable */ = {
 			isa = PBXGroup;
 			children = (
+				304C10B021F9FBC4007AB61A /* Interactors */,
 				306456F821CCEA230069ABCF /* Support */,
 				304CDF3B21B81997006F6667 /* Storyboards */,
 				304CDF3A21B81982006F6667 /* ViewControllers */,
@@ -206,10 +220,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MedicalWearable/Pods-MedicalWearable-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ABGaugeViewKit/ABGaugeViewKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/Floaty/Floaty.framework",
 				"${BUILT_PRODUCTS_DIR}/M13ProgressSuite/M13ProgressSuite.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/ViewAnimator/ViewAnimator.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -217,10 +234,13 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ABGaugeViewKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Floaty.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13ProgressSuite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViewAnimator.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,10 +280,12 @@
 				3006503721F9E9C900EFDC80 /* LoginViewController.swift in Sources */,
 				300F233721AD93C10067B40A /* MonitorViewController.swift in Sources */,
 				30DAC95721A6EFBE000D3072 /* HeartRateViewController.swift in Sources */,
+				304C10AF21F9ED48007AB61A /* Variables.swift in Sources */,
 				30CEA92721A8339400028CF5 /* MenuViewController.swift in Sources */,
 				306456FA21CCEA3B0069ABCF /* UIColorHex.swift in Sources */,
 				30DAC95521A6EFBE000D3072 /* AppDelegate.swift in Sources */,
 				304CDF3921B80D7A006F6667 /* InformationViewController.swift in Sources */,
+				304C10B221F9FBDD007AB61A /* AuthInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
