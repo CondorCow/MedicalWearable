@@ -31,19 +31,21 @@ class AuthInteractor {
                         let responseJson = try JSON(data: data)
                         print(responseJson)
                         if(statusCode ==  200) {
-                            let saveSuccessful: Bool = KeychainWrapper.standard.set(responseJson["token"].stringValue, forKey: "token")
-                            print("Save was successful")
-                            callback(true, nil, nil)
+                            if (KeychainWrapper.standard.set(responseJson["token"].stringValue, forKey: "token")){
+                                print("Save was successful")
+                                callback(true, nil, nil)
+                            }
                         } else {
                             callback(false, responseJson["message"].stringValue, responseJson["data"][0]["msg"].stringValue)
                         }
                     } catch {
-                        callback(false, "Something went wrong.", "")
+                        callback(false, "Something went wrong", "")
                     }
                 }
                 
             case .failure(let error):
                 print(error)
+                callback(false, "Something went wrong" ,error.localizedDescription)
                 break
             }
         }

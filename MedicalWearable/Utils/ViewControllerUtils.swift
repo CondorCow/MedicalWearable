@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ChameleonFramework
 
 class ViewControllerUtils {
     
@@ -23,7 +24,7 @@ class ViewControllerUtils {
     func showActivityIndicator(uiView: UIView) {
         loadingView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         loadingView.center = uiView.center
-        loadingView.backgroundColor = UIColorFromHex(0x444444, alpha: 0.7)
+        loadingView.backgroundColor = UIColor.flatGray().withAlphaComponent(0.7)//UIColorFromHex(0x444444, alpha: 0.7)
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
         

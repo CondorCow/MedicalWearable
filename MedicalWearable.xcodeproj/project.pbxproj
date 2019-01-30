@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		3006503721F9E9C900EFDC80 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3006503621F9E9C900EFDC80 /* LoginViewController.swift */; };
 		300F233721AD93C10067B40A /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300F233621AD93C10067B40A /* MonitorViewController.swift */; };
+		3041C95722019F5C00D68D00 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C95622019F5C00D68D00 /* Measurement.swift */; };
+		3041C9592201A25300D68D00 /* MeasurementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C9582201A25300D68D00 /* MeasurementType.swift */; };
+		3041C95B2201A26100D68D00 /* MeasurementSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C95A2201A26100D68D00 /* MeasurementSection.swift */; };
+		3041C95D2201A26F00D68D00 /* MeasurementSectionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C95C2201A26F00D68D00 /* MeasurementSectionValue.swift */; };
+		3041C95F2201A27800D68D00 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C95E2201A27800D68D00 /* User.swift */; };
+		3041C9632201B28E00D68D00 /* DateFormatTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C9622201B28E00D68D00 /* DateFormatTransform.swift */; };
+		3041C9672201D47900D68D00 /* MeasurementTaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C9662201D47900D68D00 /* MeasurementTaker.swift */; };
 		304C10AF21F9ED48007AB61A /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304C10AE21F9ED48007AB61A /* Variables.swift */; };
 		304C10B221F9FBDD007AB61A /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304C10B121F9FBDD007AB61A /* AuthInteractor.swift */; };
 		304CDF3921B80D7A006F6667 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CDF3821B80D7A006F6667 /* InformationViewController.swift */; };
@@ -20,6 +27,10 @@
 		30DAC95721A6EFBE000D3072 /* HeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAC95621A6EFBE000D3072 /* HeartRateViewController.swift */; };
 		30DAC95A21A6EFBE000D3072 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DAC95821A6EFBE000D3072 /* Main.storyboard */; };
 		30DAC95F21A6EFC5000D3072 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DAC95D21A6EFC5000D3072 /* LaunchScreen.storyboard */; };
+		30EAA27421FF28DD00560F6F /* MeasurementInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EAA27321FF28DD00560F6F /* MeasurementInteractor.swift */; };
+		30EAA27721FF2B7200560F6F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EAA27621FF2B7200560F6F /* Client.swift */; };
+		30F4775E21FF44A200AB6BD0 /* ClientSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F4775D21FF44A200AB6BD0 /* ClientSelectionTableViewController.swift */; };
+		30F4776021FF58F200AB6BD0 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F4775F21FF58F200AB6BD0 /* LocalAuthentication.framework */; };
 		589F32D40C5FA4B462AF36A5 /* Pods_MedicalWearable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A162351DF087E788D1069C /* Pods_MedicalWearable.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +38,13 @@
 		0ADF6D11551E48B47BF3B389 /* Pods-MedicalWearable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedicalWearable.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedicalWearable/Pods-MedicalWearable.release.xcconfig"; sourceTree = "<group>"; };
 		3006503621F9E9C900EFDC80 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		300F233621AD93C10067B40A /* MonitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorViewController.swift; sourceTree = "<group>"; };
+		3041C95622019F5C00D68D00 /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
+		3041C9582201A25300D68D00 /* MeasurementType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementType.swift; sourceTree = "<group>"; };
+		3041C95A2201A26100D68D00 /* MeasurementSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementSection.swift; sourceTree = "<group>"; };
+		3041C95C2201A26F00D68D00 /* MeasurementSectionValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementSectionValue.swift; sourceTree = "<group>"; };
+		3041C95E2201A27800D68D00 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3041C9622201B28E00D68D00 /* DateFormatTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatTransform.swift; sourceTree = "<group>"; };
+		3041C9662201D47900D68D00 /* MeasurementTaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementTaker.swift; sourceTree = "<group>"; };
 		304C10AE21F9ED48007AB61A /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		304C10B121F9FBDD007AB61A /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
 		304CDF3821B80D7A006F6667 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +58,10 @@
 		30DAC95921A6EFBE000D3072 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		30DAC95E21A6EFC5000D3072 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30DAC96021A6EFC5000D3072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30EAA27321FF28DD00560F6F /* MeasurementInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementInteractor.swift; sourceTree = "<group>"; };
+		30EAA27621FF2B7200560F6F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		30F4775D21FF44A200AB6BD0 /* ClientSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSelectionTableViewController.swift; sourceTree = "<group>"; };
+		30F4775F21FF58F200AB6BD0 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		33A162351DF087E788D1069C /* Pods_MedicalWearable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MedicalWearable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08C5B74FD40D8EB9E1F70E2 /* Pods-MedicalWearable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedicalWearable.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MedicalWearable/Pods-MedicalWearable.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F4776021FF58F200AB6BD0 /* LocalAuthentication.framework in Frameworks */,
 				589F32D40C5FA4B462AF36A5 /* Pods_MedicalWearable.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +82,7 @@
 		223B2E03A8C180BAF412E9C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30F4775F21FF58F200AB6BD0 /* LocalAuthentication.framework */,
 				33A162351DF087E788D1069C /* Pods_MedicalWearable.framework */,
 			);
 			name = Frameworks;
@@ -68,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				304C10B121F9FBDD007AB61A /* AuthInteractor.swift */,
+				30EAA27321FF28DD00560F6F /* MeasurementInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -80,6 +105,7 @@
 				300F233621AD93C10067B40A /* MonitorViewController.swift */,
 				304CDF3821B80D7A006F6667 /* InformationViewController.swift */,
 				3006503621F9E9C900EFDC80 /* LoginViewController.swift */,
+				30F4775D21FF44A200AB6BD0 /* ClientSelectionTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -93,14 +119,16 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		306456F821CCEA230069ABCF /* Support */ = {
+		306456F821CCEA230069ABCF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				306456F921CCEA3B0069ABCF /* UIColorHex.swift */,
 				304C10AE21F9ED48007AB61A /* Variables.swift */,
 				30960CDE21FB432900C96AF7 /* ViewControllerUtils.swift */,
+				3041C9622201B28E00D68D00 /* DateFormatTransform.swift */,
+				3041C9662201D47900D68D00 /* MeasurementTaker.swift */,
 			);
-			path = Support;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		30DAC94821A6EFBE000D3072 = {
@@ -124,8 +152,9 @@
 		30DAC95321A6EFBE000D3072 /* MedicalWearable */ = {
 			isa = PBXGroup;
 			children = (
+				30EAA27521FF2B5D00560F6F /* Models */,
 				304C10B021F9FBC4007AB61A /* Interactors */,
-				306456F821CCEA230069ABCF /* Support */,
+				306456F821CCEA230069ABCF /* Utils */,
 				304CDF3B21B81997006F6667 /* Storyboards */,
 				304CDF3A21B81982006F6667 /* ViewControllers */,
 				30DAC95421A6EFBE000D3072 /* AppDelegate.swift */,
@@ -133,6 +162,19 @@
 				30CACBF321CB93DF0068E0B7 /* Assets.xcassets */,
 			);
 			path = MedicalWearable;
+			sourceTree = "<group>";
+		};
+		30EAA27521FF2B5D00560F6F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				30EAA27621FF2B7200560F6F /* Client.swift */,
+				3041C95622019F5C00D68D00 /* Measurement.swift */,
+				3041C9582201A25300D68D00 /* MeasurementType.swift */,
+				3041C95A2201A26100D68D00 /* MeasurementSection.swift */,
+				3041C95C2201A26F00D68D00 /* MeasurementSectionValue.swift */,
+				3041C95E2201A27800D68D00 /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		42F1994481825E07D9DBAF31 /* Pods */ = {
@@ -227,6 +269,7 @@
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/Floaty/Floaty.framework",
 				"${BUILT_PRODUCTS_DIR}/M13ProgressSuite/M13ProgressSuite.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -241,6 +284,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Floaty.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13ProgressSuite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -282,14 +326,24 @@
 			files = (
 				3006503721F9E9C900EFDC80 /* LoginViewController.swift in Sources */,
 				300F233721AD93C10067B40A /* MonitorViewController.swift in Sources */,
+				30F4775E21FF44A200AB6BD0 /* ClientSelectionTableViewController.swift in Sources */,
+				30EAA27721FF2B7200560F6F /* Client.swift in Sources */,
 				30DAC95721A6EFBE000D3072 /* HeartRateViewController.swift in Sources */,
 				304C10AF21F9ED48007AB61A /* Variables.swift in Sources */,
+				3041C95722019F5C00D68D00 /* Measurement.swift in Sources */,
+				3041C9592201A25300D68D00 /* MeasurementType.swift in Sources */,
 				30960CDF21FB432900C96AF7 /* ViewControllerUtils.swift in Sources */,
 				30CEA92721A8339400028CF5 /* MenuViewController.swift in Sources */,
 				306456FA21CCEA3B0069ABCF /* UIColorHex.swift in Sources */,
 				30DAC95521A6EFBE000D3072 /* AppDelegate.swift in Sources */,
 				304CDF3921B80D7A006F6667 /* InformationViewController.swift in Sources */,
+				30EAA27421FF28DD00560F6F /* MeasurementInteractor.swift in Sources */,
+				3041C95F2201A27800D68D00 /* User.swift in Sources */,
+				3041C95B2201A26100D68D00 /* MeasurementSection.swift in Sources */,
 				304C10B221F9FBDD007AB61A /* AuthInteractor.swift in Sources */,
+				3041C95D2201A26F00D68D00 /* MeasurementSectionValue.swift in Sources */,
+				3041C9672201D47900D68D00 /* MeasurementTaker.swift in Sources */,
+				3041C9632201B28E00D68D00 /* DateFormatTransform.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

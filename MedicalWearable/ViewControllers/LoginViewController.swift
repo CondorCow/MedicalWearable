@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SnapKit
+import LocalAuthentication
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
@@ -32,6 +33,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //TODO: Remove
         emailTextField.text = "danny.janssen@indicia.nl"
         passwordTextField.text = "password"
+        
+//        touchIdAction()
     }
     
     func setConstraints() {
@@ -48,6 +51,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+//    func touchIdAction() {
+//
+//        print("hello there!.. You have clicked the touch ID")
+//
+//        let myContext = LAContext()
+//        let myLocalizedReasonString = "\"\(emailTextField.text!)\""
+//
+//        var authError: NSError?
+//        if #available(iOS 8.0, macOS 10.12.1, *) {
+//            if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+//                myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
+//
+//                    DispatchQueue.main.async {
+//                        if success {
+//                            print("User authenticated successfully")
+//                            self.performSegue(withIdentifier: "goToMain", sender: self)
+//                        } else {
+//                            print("User did not authenticate successfully")
+//                        }
+//                    }
+//                }
+//            } else {
+//                print("Could not evaluate policy.")
+//            }
+//        } else {
+//            print("This feature is not supported.")
+//        }
+//
+//    }
+
+    
     @IBAction func loginButtonPressed(_ sender: Any) {
         utils.showActivityIndicator(uiView: view)
         interactor.login(emailTextField.text!, passwordTextField.text!) { (success, title, message) in
@@ -63,7 +97,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             self.utils.hideActivityIndicator(uiView: self.view)
         }
-        
     }
     
     @IBAction func unwindToLoginViewController(segue: UIStoryboardSegue){}

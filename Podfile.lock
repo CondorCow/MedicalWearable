@@ -6,6 +6,7 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - Floaty (4.1.0)
   - M13ProgressSuite (1.2.9)
+  - ObjectMapper (3.4.1)
   - SnapKit (4.0.1)
   - SwiftKeychainWrapper (3.0.1)
   - SwiftyJSON (4.2.0)
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - ChameleonFramework
   - Floaty (~> 4.1.0)
   - M13ProgressSuite
+  - ObjectMapper (~> 3.4)
   - SnapKit (~> 4.0.0)
   - SwiftKeychainWrapper
   - SwiftyJSON (~> 4.0)
@@ -29,6 +31,7 @@ SPEC REPOS:
     - ChameleonFramework
     - Floaty
     - M13ProgressSuite
+    - ObjectMapper
     - SnapKit
     - SwiftKeychainWrapper
     - SwiftyJSON
@@ -40,11 +43,12 @@ SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Floaty: 1a4e213f3512cf3045ef9cb0c1ff456226d1f66a
   M13ProgressSuite: ea9f7263e73e9215e6849dfa54e29ee0ad6a145c
+  ObjectMapper: 5311bd50ca732930959e7ca1a2de43ab823a5ced
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   ViewAnimator: a849844cc3698620e1a562b510ed0c28aeafcdc5
 
-PODFILE CHECKSUM: fcc694c57b01f4ccb8b1495350a01c5db06eb34d
+PODFILE CHECKSUM: 0ee2c017dd4075ccf01337ea219235f529183a40
 
 COCOAPODS: 1.5.3
