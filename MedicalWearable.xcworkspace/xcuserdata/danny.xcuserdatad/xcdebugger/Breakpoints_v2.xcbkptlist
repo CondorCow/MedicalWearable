@@ -426,7 +426,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MedicalWearable/ViewControllers/HeartRateViewController.swift"
-            timestampString = "570554060.432373"
+            timestampString = "571229472.968596"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
@@ -442,7 +442,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MedicalWearable/ViewControllers/HeartRateViewController.swift"
-            timestampString = "570554060.432476"
+            timestampString = "571229472.968706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "273"
@@ -456,7 +456,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MedicalWearable/ViewControllers/HeartRateViewController.swift"
-            timestampString = "570554060.43255"
+            timestampString = "571229472.968778"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "177"
@@ -472,7 +472,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MedicalWearable/ViewControllers/HeartRateViewController.swift"
-            timestampString = "570554060.432614"
+            timestampString = "571229472.968841"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
@@ -552,7 +552,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MedicalWearable/Interactors/MeasurementInteractor.swift"
-            timestampString = "570554060.432748"
+            timestampString = "571158478.616291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
@@ -583,13 +583,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MedicalWearable/ViewControllers/MonitorViewController.swift"
-            timestampString = "570554060.433183"
+            filePath = "MedicalWearable/Interactors/AuthInteractor.swift"
+            timestampString = "571141938.743403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "startMeasurementButtonPressed(_:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "login(_:_:callback:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -599,13 +599,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MedicalWearable/ViewControllers/MonitorViewController.swift"
-            timestampString = "570554060.433238"
+            filePath = "MedicalWearable/Interactors/AuthInteractor.swift"
+            timestampString = "571141942.21945"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "startMeasurementButtonPressed(_:)"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "login(_:_:callback:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -615,44 +615,108 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MedicalWearable/ViewControllers/MonitorViewController.swift"
-            timestampString = "570554060.433284"
+            filePath = "MedicalWearable/ViewControllers/LoginViewController.swift"
+            timestampString = "571142454.8763241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "startMeasurementButtonPressed(_:)"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "loginButtonPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/ViewControllers/LoginViewController.swift"
+            timestampString = "571142454.876372"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "loginButtonPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/ViewControllers/LoginViewController.swift"
+            timestampString = "571142454.8764139"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "loginButtonPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/Interactors/AuthInteractor.swift"
+            timestampString = "571142009.662774"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "login(_:_:callback:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/ViewControllers/LoginViewController.swift"
+            timestampString = "571142454.876472"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "loginButtonPressed(_:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "MedicalWearable.MonitorViewController.startMeasurementButtonPressed(Any) -&gt; ()"
+                  symbolName = "MedicalWearable.LoginViewController.loginButtonPressed(Any) -&gt; ()"
                   moduleName = "MedicalWearable"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danny/Developer/MedicalWearable/MedicalWearable/ViewControllers/MonitorViewController.swift"
-                  timestampString = "570549791.368371"
+                  urlString = "file:///Users/danny/Developer/MedicalWearable/MedicalWearable/ViewControllers/LoginViewController.swift"
+                  timestampString = "571142141.492203"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "44">
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "316">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;MedicalWearable.Measurement&gt;&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in MedicalWearable.MonitorViewController.startMeasurementButtonPressed(Any) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in MedicalWearable.LoginViewController.loginButtonPressed(Any) -&gt; ()"
                   moduleName = "MedicalWearable"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/danny/Developer/MedicalWearable/MedicalWearable/ViewControllers/MonitorViewController.swift"
-                  timestampString = "570549791.3708659"
+                  urlString = "file:///Users/danny/Developer/MedicalWearable/MedicalWearable/ViewControllers/LoginViewController.swift"
+                  timestampString = "571142141.494162"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
-                  offsetFromSymbolStart = "44">
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "60">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -663,13 +727,189 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MedicalWearable/Interactors/MeasurementInteractor.swift"
-            timestampString = "570554060.433327"
+            filePath = "MedicalWearable/ViewControllers/LoginViewController.swift"
+            timestampString = "571142454.876515"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "postMeasurements(measurements:callback:)"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "loginButtonPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/Interactors/AuthInteractor.swift"
+            timestampString = "571142151.001758"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "login(_:_:callback:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/Interactors/MeasurementInteractor.swift"
+            timestampString = "571158478.616614"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "postMeasurements(clientNumber:measurements:callback:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/Interactors/MeasurementInteractor.swift"
+            timestampString = "571158478.616691"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "postMeasurements(clientNumber:measurements:callback:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/Interactors/MeasurementInteractor.swift"
+            timestampString = "571158478.616748"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "postMeasurements(clientNumber:measurements:callback:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/Interactors/MeasurementInteractor.swift"
+            timestampString = "571158478.61756"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "postMeasurements(clientNumber:measurements:callback:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MedicalWearable.MeasurementInteractor.postMeasurements(clientNumber: Swift.Int, measurements: Swift.Array&lt;MedicalWearable.Measurement&gt;, callback: (Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MedicalWearable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danny/Developer/MedicalWearable/MedicalWearable/Interactors/MeasurementInteractor.swift"
+                  timestampString = "571151447.419422"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "2044">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in MedicalWearable.MeasurementInteractor.postMeasurements(clientNumber: Swift.Int, measurements: Swift.Array&lt;MedicalWearable.Measurement&gt;, callback: (Swift.Optional&lt;Swift.String&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "MedicalWearable"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danny/Developer/MedicalWearable/MedicalWearable/Interactors/MeasurementInteractor.swift"
+                  timestampString = "571151447.422729"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/ViewControllers/MonitorViewController.swift"
+            timestampString = "571244068.085278"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "retrieveMeasurementTypesAndSections()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/ViewControllers/MonitorViewController.swift"
+            timestampString = "571244068.085746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "setupMeasurements()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/ViewControllers/MonitorViewController.swift"
+            timestampString = "571244068.0860749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
+            landmarkName = "peripheral(_:didUpdateValueFor:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MedicalWearable/ViewControllers/MonitorViewController.swift"
+            timestampString = "571244068.086413"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "430"
+            endingLineNumber = "430"
+            landmarkName = "willEnterForeground(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

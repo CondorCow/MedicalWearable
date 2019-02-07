@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class Measurement: Mappable {
+class Measurement: NSObject, Mappable {
     
     var _id: String = ""
     var measurementTypeId: String = ""
@@ -18,15 +18,16 @@ class Measurement: Mappable {
     var clientId: String = ""
     var values: [MeasurementSectionValue] = []
     
+    override init(){super.init()}
     
-    required init?(map: Map) {
-        
+    convenience required init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
         
         _id             <- map["_id"]
-        measurementTypeId <- map["measurementType"]
+        measurementTypeId <- map["measurementTypeId"]
         recordedById    <- map["recordedBy"]
         clientId        <- map["client"]
         values          <- map["values"]

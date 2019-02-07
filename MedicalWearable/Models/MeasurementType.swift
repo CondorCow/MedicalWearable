@@ -9,12 +9,15 @@
 import Foundation
 import ObjectMapper
 
-class MeasurementType: Mappable {
+class MeasurementType: NSObject, Mappable {
+    var _id: String = ""
     var name: String = ""
     var sections: [MeasurementSection] = []
     
-    required init?(map: Map) {
-        
+    override init(){super.init()}
+    
+    required convenience init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {

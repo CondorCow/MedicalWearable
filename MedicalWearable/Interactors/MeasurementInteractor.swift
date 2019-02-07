@@ -64,12 +64,12 @@ class MeasurementInteractor {
         }
     }
     
-    func postMeasurements(measurements: [Measurement], callback: @escaping (_ error: String?) -> Void) {
+    func postMeasurements(clientNumber: Int, measurements: [Measurement], callback: @escaping (_ error: String?) -> Void) {
         if let token = getToken() {
             let headers = [
                 "Authorization": "Bearer \(token)"
             ]
-            let api_url = Variables.API_URL + "client/measurement/1006"
+            let api_url = Variables.API_URL + "client/\(clientNumber)/measurements"
             
             let json = measurements.toJSON()
             let data = try! JSONSerialization.data(withJSONObject: json)
@@ -80,7 +80,6 @@ class MeasurementInteractor {
             request.httpMethod = "POST"
             request.httpBody = data
             Alamofire.request(request).responseJSON { response in
-//            Alamofire.request(api_url, method: .post, parameters: dict, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
                 switch(response.result){
                 case .success:
                     guard let statusCode = response.response?.statusCode else {
@@ -92,10 +91,10 @@ class MeasurementInteractor {
                             let responseJson = try JSON(data: data)
                             print(responseJson)
                             if(statusCode ==  200) {
-                                if (KeychainWrapper.standard.set(responseJson["token"].stringValue, forKey: "token")){
-                                    print("Save was successful")
-    //                                callback(true, nil, nil)
-                                }
+//                                if (KeychainWrapper.standard.set(responseJson["token"].stringValue, forKey: "token")){
+//                                    print("Save was successful")
+//    //                                callback(true, nil, nil)
+//                                }
                             } else {
                                 callback(responseJson["message"].stringValue)
                             }

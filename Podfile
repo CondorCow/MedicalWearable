@@ -16,4 +16,5 @@ target 'MedicalWearable' do
     pod 'SwiftyJSON', '~> 4.0'
     pod 'SwiftKeychainWrapper'
     pod 'ObjectMapper', '~> 3.4'
+    pod 'M13Checkbox'
 end

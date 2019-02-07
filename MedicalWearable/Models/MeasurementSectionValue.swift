@@ -9,31 +9,41 @@
 import Foundation
 import ObjectMapper
 
-class MeasurementSectionValue: Mappable {
+class MeasurementSectionValue: NSObject, Mappable {
     
     var _id: String = ""
     var section: MeasurementSection?
     var value: String = ""
     
-    required init?(map: Map) {
-        
+    override init() {super.init()}
+    
+    convenience required init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
         _id     <- map["_id"]
         
         let transform = TransformOf<String, Int>(fromJSON: { (value: Int?) -> String? in
-            // transform value from String? to Int?
             return String(value!)
-        }, toJSON: { (value: String?) -> Int? in
-            // transform value from Int? to String?
+        }, toJSON: { value in
             if let value = value {
                 return Int(value)
             }
             return nil
         })
         value   <- (map["value"], transform)
-        section <- map["section"]
+
+        if(map.mappingType == MappingType.toJSON) {
+            let sectionTransform = TransformOf<MeasurementSection, String>(fromJSON: {(value: String?) -> MeasurementSection? in
+                return nil
+            }, toJSON: { (section: MeasurementSection?) -> String? in
+                return section!._id
+            })
+            section <- (map["sectionId"], sectionTransform)
+        } else {
+            section <- map["section"]
+        }
     }
     
 }
