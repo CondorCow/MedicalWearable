@@ -12,7 +12,7 @@ import CoreBluetooth
 import M13ProgressSuite
 import M13Checkbox
 
-class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ClientSelectionDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
+class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ClientSelectionDelegate, VitalSelectionDelegate, CBCentralManagerDelegate, CBPeripheralDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var startMeasurementButton: UIButton!
     
@@ -20,19 +20,24 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     private var selectedClient: Client?
     private let wearableName = "Medical Wearable"
     
-    //Get from api
+    //Get measurementTypes from api
     private var measurementTypes: [MeasurementType] = []
     private var measurements: [Measurement] = []
     
-    private var selectedVitals: [VitalFunction] = []
+    private var selectedVitals: [Int] = []
+    private var currentIndex: Int = 0
     
     // Bluetooth
     var manager: CBCentralManager!
     var newWear: CBPeripheral!
     var bluetoothState: CBManagerState!
+    var service: CBService?
+    var read: CBCharacteristic?
+    var write: CBCharacteristic?
     
     var finishedSearch: Bool = false
     var timeOutRunning: Bool = false
+    var setup: Int = 0
     
     let heartRateBytes: [UInt8] = [0x69, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,0x00,0x00,0x00,0x00, 0x6A]
     let bloodPressureBytes: [UInt8] = [0x69, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,0x00,0x00,0x00,0x00, 0x6B]
@@ -62,14 +67,13 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         startMeasurementButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
         setTableView()
-        setCheckboxes()
+//        setCheckboxes()
         setConstraints()
         retrieveMeasurementTypesAndSections()
         addProgressHUD()
         
         manager = CBCentralManager(delegate: self, queue: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     deinit {
@@ -122,42 +126,6 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
             make.bottom.equalToSuperview().inset(30)
             make.centerX.equalToSuperview()
         }
-        
-        checkboxContainer.snp.makeConstraints{ make in
-            make.leading.equalToSuperview().offset(15)
-            make.trailing.equalToSuperview().inset(15)
-            make.top.equalTo(tableView.snp.bottom).offset(10)
-            make.height.equalTo(50)
-        }
-        
-        containerTitle.snp.makeConstraints{ make in
-            make.top.equalTo(checkboxContainer)
-            make.leading.equalTo(checkboxContainer)
-        }
-        
-        heartCheckbox.snp.makeConstraints { make in
-            make.width.equalTo(30)
-            make.height.equalTo(30)
-            make.leading.equalTo(checkboxContainer)
-            make.top.equalTo(containerTitle.snp.bottom).offset(10)
-        }
-        
-        heartRateLabel.snp.makeConstraints{ make in
-            make.leading.equalTo(heartCheckbox.snp.trailing).offset(10)
-            make.centerY.equalTo(heartCheckbox.snp.centerY)
-        }
-        
-        bloodPressureCheckbox.snp.makeConstraints{ make in
-            make.width.equalTo(30)
-            make.height.equalTo(30)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(containerTitle.snp.bottom).offset(10)
-        }
-        
-        bloodPressureLabel.snp.makeConstraints{ make in
-            make.leading.equalTo(bloodPressureCheckbox.snp.trailing).offset(10)
-            make.centerY.equalTo(bloodPressureCheckbox.snp.centerY)
-        }
     }
     
     func addProgressHUD(){
@@ -176,10 +144,17 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: TableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Cliënt"
+        switch(section){
+        case 0:
+            return "Cliënt"
+        case 1:
+            return "Type meting"
+        default:
+            return ""
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -187,16 +162,36 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "goToClientSelection", sender: self)
+        
+        switch(indexPath.section) {
+        case 0:
+            performSegue(withIdentifier: "goToClientSelection", sender: self)
+        case 1:
+            performSegue(withIdentifier: "goToVitalSelection", sender: self)
+        default:
+            return 
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClientCell", for: indexPath)
-        let selected = selectedClient != nil
-            ? "\(selectedClient!.lastName), \(selectedClient!.name)"
-            : "Geen cliënt geselecteerd"
-        cell.textLabel!.text = selected
         cell.textLabel!.textColor = UIColor.flatGrayColorDark()
+        
+        switch(indexPath.section){
+        case 0:
+            let selected = selectedClient != nil
+                ? "\(selectedClient!.lastName), \(selectedClient!.name)"
+                : "Geen cliënt geselecteerd"
+            cell.textLabel!.text = selected
+        case 1:
+            let vitals = selectedVitals.isEmpty
+                ? "Geen meting types geselecteerd"
+                : "\(measurementTypes[selectedVitals[0]].name), ..."
+            cell.textLabel!.text = vitals
+        default:
+            return cell
+        }
+        
         return cell
     }
     
@@ -204,10 +199,18 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         return 30
     }
     
-    // MARK: Client selection delegate
+    // MARK: Client and vital selection delegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let clientSelection = segue.destination as! ClientSelectionTableViewController
-        clientSelection.delegate = self
+        if segue.identifier == "goToClientSelection" {
+            let clientSelection = segue.destination as! ClientSelectionTableViewController
+            clientSelection.delegate = self
+        }
+        else if segue.identifier == "goToVitalSelection" {
+            let vitalSelection = segue.destination as! VitalSelectionTableViewController
+            vitalSelection.delegate = self
+            vitalSelection.options = measurementTypes
+            vitalSelection.selected = selectedVitals
+        }
     }
     
     func clientSelectionResponse(client: Client) {
@@ -215,51 +218,65 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.reloadData()
     }
     
+    func vitalSelectionResponse(selected: [Int]) {
+        selectedVitals = selected
+        tableView.reloadData()
+    }
+    
     func setupMeasurements() {
         // TODO: For each measurementType which has been selected by the user
         
-        for i in 0...measurementTypes.count - 1 {
+        selectedVitals.forEach { sv in
             let measurement = Measurement()
-            measurement.measurementTypeId = measurementTypes[i]._id
+            if let clientId = selectedClient?._id {
+                measurement.clientId = clientId
+            }
             
-            measurementTypes[i].sections.forEach { s in
+            measurement.measurementTypeId = measurementTypes[sv]._id
+            measurementTypes[sv].sections.forEach { s in
                 let msv = MeasurementSectionValue()
                 msv.section = s
                 measurement.values.append(msv)
             }
             measurements.append(measurement)
         }
-        print("hoi")
+        print(measurements)
     }
     
     func retrieveMeasurementTypesAndSections() {
-        //TODO: Remove and get from API
-        let measurementType = MeasurementType()
-        measurementType._id = "5c51a7e3c522e151511418c4"
-        measurementType.name = "Bloeddruk"
-        
-        let ms = MeasurementSection()
-        ms._id = "5c51a7e3c522e151511418c2"
-        ms.name = "Onderdruk"
-        
-        let ms2 = MeasurementSection()
-        ms2._id = "5c51a7e3c522e151511418c3"
-        ms2.name = "Bovendruk"
-        
-        measurementType.sections.append(ms)
-        measurementType.sections.append(ms2)
-        
-        measurementTypes.append(measurementType)
-        print("hoi")
+        interactor.getMeasurementTypes{ (types, err) in
+            if(err == nil){
+                self.measurementTypes = types!
+            } else {
+                let alert = UIAlertController(title: "Error", message: err, preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
+                })
+                
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func startMeasurementButtonPressed(_ sender: Any) {
-        setupMeasurements()
-        
-        manager?.scanForPeripherals(withServices: nil, options: nil)
-        progressHUD.show(true)
+        if selectedClient == nil {
+            showAlert(title: "Er ging iets mis", message: "Selecteer een cliënt")
+        } else if selectedVitals.isEmpty {
+            showAlert(title: "Er ging iets mis", message: "Selecteer een of meerdere meting types")
+        } else {
+            if(bluetoothState != .poweredOff) {
+                manager?.scanForPeripherals(withServices: nil, options: nil)
+                progressHUD.show(true)
+            } else {
+                showBluetoothOffError()
+            }
+            setupMeasurements()
+        }
         
         //TODO: Post measurements
+//        selectedVitals.removeAll()
     }
     
     // MARK: Bluetooth - Central Manager
@@ -278,7 +295,6 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("Bluetooth status is POWERED OFF")
             case .poweredOn:
                 print("Bluetooth status is POWERED ON")
-//                manager.scanForPeripherals(withServices: nil, options: nil)
             default: break
         }
         bluetoothState = central.state
@@ -350,24 +366,28 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        self.service = service
+        
         if let characteristicArray = service.characteristics as [CBCharacteristic]!
         {
             for cc in characteristicArray{
                 print("UUID ", cc.uuid.uuidString)
-                
+
                 // 00003: TX for reading values, 00002: RX for writing values
                 if cc.uuid.uuidString == "6E400003-B5A3-F393-E0A9-E50E24DCCA9E" {
+                    read = cc
                     peripheral.setNotifyValue(true, for: cc)
                 }
                 if cc.uuid.uuidString == "6E400002-B5A3-F393-E0A9-E50E24DCCA9E" {
-                    peripheral.writeValue(Data(bytes: heartRateBytes), for: cc, type: .withResponse)
+                    write = cc
                 }
             }
             if progressHUD.progress != 0.95 {
-                print("Setting up")
-                changeProgressHudStatus(progressValue: 0.95, withStatus: "Setting up")
+                print("Measuring")
+                changeProgressHudStatus(progressValue: 0.10, withStatus: "Meting wordt uitgevoerd")
             }
         }
+        writeToCharacteristic()
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor descriptor: CBDescriptor, error: Error?) {
@@ -375,19 +395,49 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        if progressHUD.isVisible() {
-            progressHUD.hide(true)
-            print("Done")
-        }
-        print("Characteristic UUID: ", characteristic.uuid)
+        print(setup)
         
         switch characteristic.uuid {
         case CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"):
-            let bpm = heartRate(from: characteristic)
-//            onHeartRateReceived(bpm: bpm, peripheral, characteristic)
-            print(bpm)
+                switch(measurementTypes[selectedVitals[currentIndex]].identifier) {
+                case "heartrate":
+                    if setup > 10 {
+                        let bpm = heartRate(from: characteristic)
+                        print(bpm)
+                        nextVital()
+                    }
+                case "bloodpressure":
+                    if setup > 10 {
+                        print("TODO: Bloodpressure")
+                        nextVital()
+                    }
+                default:
+                    print("TODO: The rest")
+                }
+            setup += 1
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
+        }
+    }
+    
+    func nextVital() {
+        // Go to next measurement
+        currentIndex += 1
+        if currentIndex < selectedVitals.count {
+            writeToCharacteristic()
+        } else {
+            changeProgressHudStatus(progressValue: 0.9, withStatus: "Gegevens worden opgeslagen")
+            currentIndex = 0
+        }
+        setup = 0
+    }
+    
+    func writeToCharacteristic() {
+        if self.service == nil || self.newWear == nil {
+            showAlert(title: "Er ging iets mis", message: "Connectie verloren")
+        } else {
+            let data = measurementTypes[selectedVitals[currentIndex]].bytes
+            newWear.writeValue(Data(data), for: write!, type: .withResponse)
         }
     }
     
@@ -414,6 +464,13 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.present(alert, animated: true, completion: nil)
     }
     
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func changeProgressHudStatus(progressValue: Double, withStatus status: String){
         if progressHUD.isVisible() {
             print("Progress: ", progressHUD.progress)
@@ -427,10 +484,10 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         finishedSearch = false
     }
     
-    @objc func willEnterForeground(_ notification: NSNotification!) {
-        timeOutRunning = false
-        manager?.scanForPeripherals(withServices: nil, options: nil)
-    }
+//    @objc func willEnterForeground(_ notification: NSNotification!) {
+//        timeOutRunning = false
+//        manager?.scanForPeripherals(withServices: nil, options: nil)
+//    }
     
     // MARK: Calculation
     

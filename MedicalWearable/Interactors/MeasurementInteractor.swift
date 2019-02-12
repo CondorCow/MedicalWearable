@@ -40,11 +40,53 @@ class MeasurementInteractor {
         }
     }
     
+    func getMeasurementTypes(callback: @escaping ([MeasurementType]?, _ error: String?) -> Void) {
+        if let token = getToken() {
+            let headers = [
+                "Authorization": "Bearer \(token)"
+            ]
+            let api_url = Variables.API_URL + "admin/measurementTypes"
+            
+            Alamofire.request(api_url, method: .get, headers: headers).responseJSON{ response in
+                switch(response.result){
+                case .success:
+                    guard let statusCode = response.response?.statusCode else {
+                        return
+                    }
+                    
+                    if let data = response.data{
+                        do {
+                            let responseJson = try JSON(data: data)
+                            print(responseJson)
+                            if(statusCode ==  200) {
+                                let responseJson = JSON(data)["measurementTypes"].rawValue
+                                let measurementTypes = Mapper<MeasurementType>().mapArray(JSONArray: responseJson as! [[String: Any]])
+                                callback(measurementTypes, nil)
+                            } else {
+                                callback(nil, responseJson["message"].stringValue)//, responseJson["data"][0]["msg"].stringValue)
+                            }
+                        } catch {
+                            callback(nil, "Something went wrong")
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                    callback(nil, error.localizedDescription)
+                    break
+                }
+            }
+        } else {
+            callback(nil, "Not authorized.")
+        }
+    }
+    
     func getMeasurementsByClient(callback: @escaping ([Measurement]?, _ error: String?) -> Void){
         if let token = getToken() {
             let headers = [
                 "Authorization": "Bearer \(token)"
             ]
+            
+            //TODO: Get from specific client
             let api_url = Variables.API_URL + "client/measurement/1006"
             
             Alamofire.request(api_url, method: .get, headers: headers).responseJSON{ response in

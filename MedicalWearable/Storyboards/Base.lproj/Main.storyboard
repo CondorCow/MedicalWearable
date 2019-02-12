@@ -112,7 +112,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xdJ-xx-Ypf">
-                                <rect key="frame" x="0.0" y="116" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="116" width="375" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -148,6 +148,7 @@
                         <outlet property="startMeasurementButton" destination="V3e-my-V3z" id="JSn-OC-pzE"/>
                         <outlet property="tableView" destination="xdJ-xx-Ypf" id="bGV-xR-ZeS"/>
                         <segue destination="tDK-37-vCd" kind="show" identifier="goToClientSelection" id="mM6-W2-WTO"/>
+                        <segue destination="h87-wp-uSF" kind="show" identifier="goToVitalSelection" id="YbQ-fC-umh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNf-rD-E1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,7 +181,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rxl-dP-lKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3393" y="-253"/>
+            <point key="canvasLocation" x="3393" y="102"/>
         </scene>
         <!--Menu-->
         <scene sceneID="k2Q-cT-K4N">
@@ -327,6 +328,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13E-pI-fLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-42.399999999999999" y="131.78410794602701"/>
+        </scene>
+        <!--Meting types-->
+        <scene sceneID="F1m-FO-kzw">
+            <objects>
+                <tableViewController title="Meting types" id="h87-wp-uSF" customClass="VitalSelectionTableViewController" customModule="MedicalWearable" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lue-Nz-8zM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="VitalSelectionCell" id="Tad-DP-bFF">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tad-DP-bFF" id="AMP-8h-cdg">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <color key="tintColor" red="0.0039215686269999999" green="0.40784313729999999" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="h87-wp-uSF" id="iHb-WY-BAf"/>
+                            <outlet property="delegate" destination="h87-wp-uSF" id="uuh-46-hUN"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QgW-27-6gv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3393" y="-561"/>
         </scene>
     </scenes>
     <resources>

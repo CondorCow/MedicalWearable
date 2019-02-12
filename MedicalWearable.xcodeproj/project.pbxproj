@@ -15,8 +15,7 @@
 		3041C95D2201A26F00D68D00 /* MeasurementSectionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C95C2201A26F00D68D00 /* MeasurementSectionValue.swift */; };
 		3041C95F2201A27800D68D00 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C95E2201A27800D68D00 /* User.swift */; };
 		3041C9632201B28E00D68D00 /* DateFormatTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C9622201B28E00D68D00 /* DateFormatTransform.swift */; };
-		30471A47220C5B3100ADDC52 /* VitalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30471A46220C5B3100ADDC52 /* VitalFunction.swift */; };
-		30471A49220C5B6600ADDC52 /* VitalFunctionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30471A48220C5B6600ADDC52 /* VitalFunctionType.swift */; };
+		3042AFC32211C8F9007BD8FC /* VitalSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042AFC22211C8F9007BD8FC /* VitalSelectionTableViewController.swift */; };
 		304C10AF21F9ED48007AB61A /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304C10AE21F9ED48007AB61A /* Variables.swift */; };
 		304C10B221F9FBDD007AB61A /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304C10B121F9FBDD007AB61A /* AuthInteractor.swift */; };
 		304CDF3921B80D7A006F6667 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304CDF3821B80D7A006F6667 /* InformationViewController.swift */; };
@@ -45,8 +44,7 @@
 		3041C95C2201A26F00D68D00 /* MeasurementSectionValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementSectionValue.swift; sourceTree = "<group>"; };
 		3041C95E2201A27800D68D00 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3041C9622201B28E00D68D00 /* DateFormatTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatTransform.swift; sourceTree = "<group>"; };
-		30471A46220C5B3100ADDC52 /* VitalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalFunction.swift; sourceTree = "<group>"; };
-		30471A48220C5B6600ADDC52 /* VitalFunctionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalFunctionType.swift; sourceTree = "<group>"; };
+		3042AFC22211C8F9007BD8FC /* VitalSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalSelectionTableViewController.swift; sourceTree = "<group>"; };
 		304C10AE21F9ED48007AB61A /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		304C10B121F9FBDD007AB61A /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
 		304CDF3821B80D7A006F6667 /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +106,7 @@
 				304CDF3821B80D7A006F6667 /* InformationViewController.swift */,
 				3006503621F9E9C900EFDC80 /* LoginViewController.swift */,
 				30F4775D21FF44A200AB6BD0 /* ClientSelectionTableViewController.swift */,
+				3042AFC22211C8F9007BD8FC /* VitalSelectionTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -128,8 +127,6 @@
 				304C10AE21F9ED48007AB61A /* Variables.swift */,
 				30960CDE21FB432900C96AF7 /* ViewControllerUtils.swift */,
 				3041C9622201B28E00D68D00 /* DateFormatTransform.swift */,
-				30471A46220C5B3100ADDC52 /* VitalFunction.swift */,
-				30471A48220C5B6600ADDC52 /* VitalFunctionType.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -333,7 +330,6 @@
 				300F233721AD93C10067B40A /* MonitorViewController.swift in Sources */,
 				30F4775E21FF44A200AB6BD0 /* ClientSelectionTableViewController.swift in Sources */,
 				30EAA27721FF2B7200560F6F /* Client.swift in Sources */,
-				30471A47220C5B3100ADDC52 /* VitalFunction.swift in Sources */,
 				30DAC95721A6EFBE000D3072 /* HeartRateViewController.swift in Sources */,
 				304C10AF21F9ED48007AB61A /* Variables.swift in Sources */,
 				3041C95722019F5C00D68D00 /* Measurement.swift in Sources */,
@@ -345,8 +341,8 @@
 				304CDF3921B80D7A006F6667 /* InformationViewController.swift in Sources */,
 				30EAA27421FF28DD00560F6F /* MeasurementInteractor.swift in Sources */,
 				3041C95F2201A27800D68D00 /* User.swift in Sources */,
+				3042AFC32211C8F9007BD8FC /* VitalSelectionTableViewController.swift in Sources */,
 				3041C95B2201A26100D68D00 /* MeasurementSection.swift in Sources */,
-				30471A49220C5B6600ADDC52 /* VitalFunctionType.swift in Sources */,
 				304C10B221F9FBDD007AB61A /* AuthInteractor.swift in Sources */,
 				3041C95D2201A26F00D68D00 /* MeasurementSectionValue.swift in Sources */,
 				3041C9632201B28E00D68D00 /* DateFormatTransform.swift in Sources */,
