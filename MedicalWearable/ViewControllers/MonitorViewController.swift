@@ -224,8 +224,6 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func setupMeasurements() {
-        // TODO: For each measurementType which has been selected by the user
-        
         selectedVitals.forEach { sv in
             let measurement = Measurement()
             if let clientId = selectedClient?._id {
@@ -260,13 +258,29 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func saveMeasurements(){//(callback: @escaping (_ success: Bool, _ err: String) -> Void) {
+        if let clientNumber = selectedClient?.clientNumber {
+            interactor.postMeasurements(clientNumber: clientNumber, measurements: measurements) { success, err in
+                if success {
+                    print("Successfully saved")
+                    self.changeProgressHudStatus(progressValue: 1.0, withStatus: "Succesvol opgeslagen")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.progressHUD.hide(true)
+                    }
+                } else {
+                    print("Failed save")
+                }
+            }
+        }
+    }
+    
     @IBAction func startMeasurementButtonPressed(_ sender: Any) {
         if selectedClient == nil {
             showAlert(title: "Er ging iets mis", message: "Selecteer een cliënt")
         } else if selectedVitals.isEmpty {
             showAlert(title: "Er ging iets mis", message: "Selecteer een of meerdere meting types")
         } else {
-            if(bluetoothState != .poweredOff) {
+            if(bluetoothState == .poweredOn) {
                 manager?.scanForPeripherals(withServices: nil, options: nil)
                 progressHUD.show(true)
             } else {
@@ -301,7 +315,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        print("Name: \(peripheral.name)")
+        print("Name: \(peripheral.name ?? "")")
         print("Identifier: \(peripheral.identifier)")
         if progressHUD.progress != 0.15 {
             changeProgressHudStatus(progressValue: 0.15, withStatus: "Searching for \(wearableName)")
@@ -397,26 +411,33 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         print(setup)
         
-        switch characteristic.uuid {
-        case CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"):
-                switch(measurementTypes[selectedVitals[currentIndex]].identifier) {
-                case "heartrate":
-                    if setup > 10 {
+        if currentIndex < selectedVitals.count {
+            var current = measurementTypes[selectedVitals[currentIndex]]
+            changeProgressHudStatus(progressValue: Double(setup) / 10, withStatus: "\(current.name) wordt gemeten")
+        
+            switch characteristic.uuid {
+            case CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"):
+                if setup > 10 {
+                    switch(current.identifier) {
+                    case "heartrate":
                         let bpm = heartRate(from: characteristic)
                         print(bpm)
+                        measurements.first { m in
+                            m.measurementTypeId == current._id
+                        }?.values[0].value = String(bpm)
+                        
                         nextVital()
-                    }
-                case "bloodpressure":
-                    if setup > 10 {
+                    case "bloodpressure":
                         print("TODO: Bloodpressure")
                         nextVital()
+                    default:
+                        print("TODO: The rest")
                     }
-                default:
-                    print("TODO: The rest")
                 }
-            setup += 1
-        default:
-            print("Unhandled Characteristic UUID: \(characteristic.uuid)")
+                setup += 1
+            default:
+                print("Unhandled Characteristic UUID: \(characteristic.uuid)")
+            }
         }
     }
     
@@ -425,11 +446,11 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         currentIndex += 1
         if currentIndex < selectedVitals.count {
             writeToCharacteristic()
+            setup = 0
         } else {
-            changeProgressHudStatus(progressValue: 0.9, withStatus: "Gegevens worden opgeslagen")
-            currentIndex = 0
+            changeProgressHudStatus(progressValue: 0.5, withStatus: "Gegevens worden opgeslagen")
+            saveMeasurements()
         }
-        setup = 0
     }
     
     func writeToCharacteristic() {

@@ -106,11 +106,8 @@ class MeasurementInteractor {
         }
     }
     
-    func postMeasurements(clientNumber: Int, measurements: [Measurement], callback: @escaping (_ error: String?) -> Void) {
+    func postMeasurements(clientNumber: Int, measurements: [Measurement], callback: @escaping (_ success: Bool, _ error: String?) -> Void) {
         if let token = getToken() {
-            let headers = [
-                "Authorization": "Bearer \(token)"
-            ]
             let api_url = Variables.API_URL + "client/\(clientNumber)/measurements"
             
             let json = measurements.toJSON()
@@ -133,21 +130,18 @@ class MeasurementInteractor {
                             let responseJson = try JSON(data: data)
                             print(responseJson)
                             if(statusCode ==  200) {
-//                                if (KeychainWrapper.standard.set(responseJson["token"].stringValue, forKey: "token")){
-//                                    print("Save was successful")
-//    //                                callback(true, nil, nil)
-//                                }
+                                callback(true, nil)
                             } else {
-                                callback(responseJson["message"].stringValue)
+                                callback(false, responseJson["message"].stringValue)
                             }
                         } catch {
-                            callback("Something went wrong")
+                            callback(false, "Something went wrong")
                         }
                     }
 
                 case .failure(let error):
                     print(error)
-                    callback(error.localizedDescription)
+                    callback(false, error.localizedDescription)
                     break
                 }
             }
