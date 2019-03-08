@@ -38,23 +38,22 @@ class MenuViewController: UIViewController {
         
         //Heart Rate Button
         heartRateButton.layer.cornerRadius = 50
-        heartRateButton.backgroundColor = UIColor.flatRed()
+        heartRateButton.backgroundColor = UIColor(hexString: "f7b701")
         buttonsContainer.addSubview(heartRateButton)
         
         //Blood Pressure Button
         bloodPressureButton.layer.cornerRadius = 50
-        bloodPressureButton.backgroundColor = UIColor(hexString: "4e749b")
+        bloodPressureButton.backgroundColor = UIColor(hexString: "472466")
         buttonsContainer.addSubview(bloodPressureButton)
         
         //Labels below buttons
-        heartRateLabel.text = "Heart Rate Monitor"
-//        bloodPressureLabel.text = "Blood Pressure Monitor"
-        
-        //TODO: Strikethrough label because Blood Pressure is not yet implemented
-        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Blood Pressure Monitor")
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "Hartslag Monitor")
         attributeString.addAttribute(.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
-        bloodPressureLabel.attributedText = attributeString
-
+        heartRateLabel.attributedText = attributeString
+//        heartRateLabel.text = "Heart Rate Monitor"
+        
+        bloodPressureLabel.text = "Nieuwe meting"
+        
         buttonsContainer.addSubview(heartRateLabel)
         buttonsContainer.addSubview(bloodPressureLabel)
     }
@@ -68,7 +67,7 @@ class MenuViewController: UIViewController {
                 print(safeArea.size.height)
                 print(navigationBar.frame.size.height)
                 print(buttonsContainer.frame.size.height / 2)
-                make.centerY.equalToSuperview().offset(navigationBar.frame.size.height / 2)
+                make.centerY.equalToSuperview()//.offset(navigationBar.frame.size.height / 2)
                 make.leading.equalTo((self.view.frame.size.width / 2) - (buttonsContainer.frame.size.width / 2))
             }
         }
@@ -128,7 +127,7 @@ class MenuViewController: UIViewController {
     
     func addFloaty(){
         //Floating action button itself
-        floaty.buttonColor = UIColor.flatRed()
+        floaty.buttonColor = UIColor(hexString: "f7b701")
         floaty.plusColor = UIColor.white
         
         //Information button
@@ -180,7 +179,10 @@ class MenuViewController: UIViewController {
     
     @IBAction func heartRateButtonPressed(_ sender: UIButton) {
         print("goToHeartRateMonitor")
-        performSegue(withIdentifier: "goToHeartRateMonitor", sender: self)
+        let alert = UIAlertController(title: "Nog niet beschikbaar", message: "Het uitvoeren van losse metingen is nog niet beschikbaar", preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {alert.dismiss(animated: true, completion: nil)}
+//        performSegue(withIdentifier: "goToHeartRateMonitor", sender: self)
     }
     @IBAction func bloodPressureButtonPressed(_ sender: UIButton) {
         print("goToHeartRateMonitor")

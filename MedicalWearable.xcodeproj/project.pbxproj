@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300324A02216EF8100940196 /* PincodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3003249F2216EF8100940196 /* PincodeViewController.swift */; };
 		3006503721F9E9C900EFDC80 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3006503621F9E9C900EFDC80 /* LoginViewController.swift */; };
 		300F233721AD93C10067B40A /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300F233621AD93C10067B40A /* MonitorViewController.swift */; };
 		3041C95722019F5C00D68D00 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3041C95622019F5C00D68D00 /* Measurement.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		0ADF6D11551E48B47BF3B389 /* Pods-MedicalWearable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedicalWearable.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedicalWearable/Pods-MedicalWearable.release.xcconfig"; sourceTree = "<group>"; };
+		3003249F2216EF8100940196 /* PincodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PincodeViewController.swift; sourceTree = "<group>"; };
 		3006503621F9E9C900EFDC80 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		300F233621AD93C10067B40A /* MonitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorViewController.swift; sourceTree = "<group>"; };
 		3041C95622019F5C00D68D00 /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				3006503621F9E9C900EFDC80 /* LoginViewController.swift */,
 				30F4775D21FF44A200AB6BD0 /* ClientSelectionTableViewController.swift */,
 				3042AFC22211C8F9007BD8FC /* VitalSelectionTableViewController.swift */,
+				3003249F2216EF8100940196 /* PincodeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				30DAC95521A6EFBE000D3072 /* AppDelegate.swift in Sources */,
 				304CDF3921B80D7A006F6667 /* InformationViewController.swift in Sources */,
 				30EAA27421FF28DD00560F6F /* MeasurementInteractor.swift in Sources */,
+				300324A02216EF8100940196 /* PincodeViewController.swift in Sources */,
 				3041C95F2201A27800D68D00 /* User.swift in Sources */,
 				3042AFC32211C8F9007BD8FC /* VitalSelectionTableViewController.swift in Sources */,
 				3041C95B2201A26100D68D00 /* MeasurementSection.swift in Sources */,

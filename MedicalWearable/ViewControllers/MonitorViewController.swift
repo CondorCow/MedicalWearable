@@ -43,14 +43,6 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     let bloodPressureBytes: [UInt8] = [0x69, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,0x00,0x00,0x00,0x00, 0x6B]
     let showResultBytes: [UInt8] = [0x6A, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,0x00,0x00,0x00,0x00, 0x6B]
     
-    // Checkboxes
-    private var checkboxContainer: UIView!
-    private var heartCheckbox: M13Checkbox!
-    private var bloodPressureCheckbox: M13Checkbox!
-    private var heartRateLabel: UILabel!
-    private var bloodPressureLabel: UILabel!
-    private var containerTitle: UILabel!
-    
     var progressHUD: M13ProgressHUD!
     
     // END Bluetooth
@@ -62,59 +54,21 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         startMeasurementButton.setTitle("Start meting", for: .normal)
         startMeasurementButton.setTitleColor(.white, for: .normal)
-        startMeasurementButton.backgroundColor = UIColor(hexString: "4E749B")?.withAlphaComponent(0.9)
+        startMeasurementButton.backgroundColor = UIColor(hexString: "472466")
         startMeasurementButton.layer.cornerRadius = 10
         startMeasurementButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
         setTableView()
-//        setCheckboxes()
         setConstraints()
         retrieveMeasurementTypesAndSections()
         addProgressHUD()
         
         manager = CBCentralManager(delegate: self, queue: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    func setCheckboxes() {
-        checkboxContainer = UIView()
-        view.addSubview(checkboxContainer)
-        
-        heartCheckbox = M13Checkbox()
-        heartCheckbox.boxType = .circle
-        heartCheckbox.markType = .checkmark
-        heartCheckbox.stateChangeAnimation = .expand(.fill)
-        heartCheckbox.tintColor = UIColor(hexString: "4E749B")
-        checkboxContainer.addSubview(heartCheckbox)
-        
-        bloodPressureCheckbox = M13Checkbox()
-        bloodPressureCheckbox.boxType = .circle
-        bloodPressureCheckbox.markType = .checkmark
-        bloodPressureCheckbox.stateChangeAnimation = .expand(.fill)
-        bloodPressureCheckbox.tintColor = UIColor(hexString: "4E749B")
-        checkboxContainer.addSubview(bloodPressureCheckbox)
-        
-        containerTitle = UILabel()
-        containerTitle.text = "Selecteer de type metingen die u wilt uitvoeren:"
-        containerTitle.font = containerTitle.font.withSize(13)
-        containerTitle.textColor = UIColor.darkGray
-        checkboxContainer.addSubview(containerTitle)
-        
-        heartRateLabel = UILabel()
-        heartRateLabel.text = "Hartslag"
-        heartRateLabel.font = heartRateLabel.font.withSize(13)
-        heartRateLabel.textColor = UIColor.darkGray
-        checkboxContainer.addSubview(heartRateLabel)
-        
-        bloodPressureLabel = UILabel()
-        bloodPressureLabel.text = "Bloeddruk"
-        bloodPressureLabel.font = bloodPressureLabel.font.withSize(13)
-        bloodPressureLabel.textColor = UIColor.darkGray
-        checkboxContainer.addSubview(bloodPressureLabel)
     }
     
     func setTableView(){
@@ -123,8 +77,15 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func setConstraints() {
         startMeasurementButton.snp.makeConstraints{make in
-            make.bottom.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview().inset(50)
             make.centerX.equalToSuperview()
+        }
+        
+        let tHeight = tableView.frame.size.height
+        
+        tableView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(tHeight)
         }
     }
     
@@ -262,6 +223,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let clientNumber = selectedClient?.clientNumber {
             interactor.postMeasurements(clientNumber: clientNumber, measurements: measurements) { success, err in
                 if success {
+                    self.selectedVitals.removeAll()
                     print("Successfully saved")
                     self.changeProgressHudStatus(progressValue: 1.0, withStatus: "Succesvol opgeslagen")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -280,17 +242,16 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else if selectedVitals.isEmpty {
             showAlert(title: "Er ging iets mis", message: "Selecteer een of meerdere meting types")
         } else {
-            if(bluetoothState == .poweredOn) {
+            if bluetoothState == .poweredOn {
+//                manager.cancelPeripheralConnection(newWear)
                 manager?.scanForPeripherals(withServices: nil, options: nil)
+                
                 progressHUD.show(true)
             } else {
                 showBluetoothOffError()
             }
             setupMeasurements()
         }
-        
-        //TODO: Post measurements
-//        selectedVitals.removeAll()
     }
     
     // MARK: Bluetooth - Central Manager
@@ -505,10 +466,12 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         finishedSearch = false
     }
     
-//    @objc func willEnterForeground(_ notification: NSNotification!) {
-//        timeOutRunning = false
-//        manager?.scanForPeripherals(withServices: nil, options: nil)
-//    }
+    @objc func willEnterForeground(_ notification: NSNotification!) {
+        timeOutRunning = false
+        if newWear != nil {
+            manager?.scanForPeripherals(withServices: nil, options: nil)
+        }
+    }
     
     // MARK: Calculation
     

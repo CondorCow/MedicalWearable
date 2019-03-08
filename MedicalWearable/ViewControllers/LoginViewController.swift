@@ -49,6 +49,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             make.leading.equalTo(emailTextField)
             make.trailing.equalTo(emailTextField)
         }
+        
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
     }
     
 //    func touchIdAction() {

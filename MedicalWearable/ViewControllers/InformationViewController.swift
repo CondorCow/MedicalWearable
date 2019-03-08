@@ -16,6 +16,7 @@ class InformationViewController: UITableViewController {
         super.viewDidLoad()
         
         informationItems.append("Unit4 Zorgapp")
+        informationItems.append("MeetMattie")
     }
 
     // MARK: - Table view data source
