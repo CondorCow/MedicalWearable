@@ -260,45 +260,57 @@
         <!--Pincode View Controller-->
         <scene sceneID="Lw1-rq-pNi">
             <objects>
-                <viewController id="nrd-hY-gi0" customClass="PincodeViewController" customModule="MedicalWearable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pincodeView" id="nrd-hY-gi0" customClass="PincodeViewController" customModule="MedicalWearable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vO5-u5-3rl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPp-RA-4Ua">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKY-hO-yAt">
+                                <rect key="frame" x="63" y="76" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.2784313725" green="0.14117647059999999" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UCH-MN-YGe">
-                                <rect key="frame" x="0.0" y="163" width="375" height="504"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MMz-Ls-wp4">
+                                <rect key="frame" x="77" y="239" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RHo-G6-zbc">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="6mO-6z-dmh">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPK-Pg-4OA">
+                                <rect key="frame" x="128" y="468" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="setPincodeButtonPressed:" destination="nrd-hY-gi0" eventType="touchUpInside" id="zzR-sM-QnU"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYh-fv-jHi">
+                                <rect key="frame" x="104" y="196" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="C9X-Cw-pYo"/>
                     </view>
+                    <connections>
+                        <outlet property="continueButton" destination="EPK-Pg-4OA" id="QWF-qk-MNa"/>
+                        <outlet property="errorLabel" destination="pYh-fv-jHi" id="THR-HI-8yE"/>
+                        <outlet property="pincodeTextField" destination="MMz-Ls-wp4" id="ssd-yQ-qr0"/>
+                        <outlet property="titleLabel" destination="MKY-hO-yAt" id="QY3-yT-tyL"/>
+                        <segue destination="c3L-qk-102" kind="show" identifier="goToMain" id="PjM-zF-VNK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7yB-Cn-Qap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-42.399999999999999" y="-562.66866566716647"/>
+            <point key="canvasLocation" x="861.60000000000002" y="-536.58170914542734"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xEh-gR-SDA">
@@ -328,7 +340,7 @@
         <!--Login View Controller-->
         <scene sceneID="CSy-Ly-Y2S">
             <objects>
-                <viewController id="ase-JM-HsQ" customClass="LoginViewController" customModule="MedicalWearable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="ase-JM-HsQ" customClass="LoginViewController" customModule="MedicalWearable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="emL-PE-dFR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -366,6 +378,7 @@
                         <outlet property="loginButton" destination="JBz-28-eun" id="aNw-dV-W7a"/>
                         <outlet property="passwordTextField" destination="MNO-Ye-7Tw" id="v5c-DK-Oqp"/>
                         <segue destination="c3L-qk-102" kind="show" identifier="goToMain" id="8vG-bS-rQm"/>
+                        <segue destination="nrd-hY-gi0" kind="show" identifier="goToPincode" id="UGS-pa-9WD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13E-pI-fLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -406,5 +419,8 @@
         <image name="blood-pressure-icon" width="75" height="75"/>
         <image name="heart-rate-icon" width="75" height="75"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="8vG-bS-rQm"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.74117647058823533" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

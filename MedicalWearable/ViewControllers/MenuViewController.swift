@@ -162,7 +162,11 @@ class MenuViewController: UIViewController {
         let confirmAction = UIAlertAction(title: "OK", style: .default) { result in
             self.interactor.logout{ isSuccess in
                 if isSuccess {
-                    self.performSegue(withIdentifier: "unwindSegueToLogin", sender: self)
+                    let initialViewController = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                    UIApplication.shared.keyWindow?.rootViewController = initialViewController
+                    
+//                    self.present(UIAlertController(title: "unwind", message: "", preferredStyle: .alert), animated: true, completion: nil)
+//                    self.performSegue(withIdentifier: "unwindSegueToLogin", sender: self)
                 } else {
                     print("Token removal failed.")
                 }

@@ -91,7 +91,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         utils.showActivityIndicator(uiView: view)
         interactor.login(emailTextField.text!, passwordTextField.text!) { (success, title, message) in
             if success {
-                self.performSegue(withIdentifier: "goToMain", sender: self)
+                if (Variables.isPincodeSet()){
+                    self.performSegue(withIdentifier: "goToMain", sender: self)
+                } else {
+                    self.performSegue(withIdentifier: "goToPincode", sender: self)
+                }
             } else {
                 var alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
                 var action = UIAlertAction(title: "OK", style: .default, handler: { (action) in

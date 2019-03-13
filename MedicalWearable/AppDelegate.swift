@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Thread.sleep(forTimeInterval: 1.0)
+        Thread.sleep(forTimeInterval: 0.5)
         // Override point for customization after application launch.
+//        KeychainWrapper.standard.removeAllKeys()
+        
+        if (Variables.isPincodeSet()) {
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = mainStoryboard.instantiateViewController(withIdentifier: "pincodeView")
+            window?.rootViewController = viewController
+            window?.makeKeyAndVisible()
+        }
         return true
     }
 

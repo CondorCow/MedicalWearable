@@ -58,10 +58,10 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         startMeasurementButton.layer.cornerRadius = 10
         startMeasurementButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
+        addProgressHUD()
         setTableView()
         setConstraints()
         retrieveMeasurementTypesAndSections()
-        addProgressHUD()
         
         manager = CBCentralManager(delegate: self, queue: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -90,16 +90,12 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func addProgressHUD(){
-        //ProgressHUD
         progressHUD = M13ProgressHUD(progressView: M13ProgressViewPie())
         progressHUD.progressViewSize = CGSize(width: 60.0, height: 60.0)
         progressHUD.animationPoint = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
         progressHUD.primaryColor = UIColor.flatMint()
         progressHUD.secondaryColor = UIColor.flatMint()
         view.addSubview(progressHUD)
-        
-        //Show Progress
-//        progressHUD.show(true)
     }
     
     // MARK: TableView

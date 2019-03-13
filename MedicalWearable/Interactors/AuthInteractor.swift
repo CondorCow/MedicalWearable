@@ -52,7 +52,16 @@ class AuthInteractor {
     }
     
     func logout(_ callback: (_ success: Bool) -> Void) {
-//        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(key: "token")
-        callback(KeychainWrapper.standard.removeObject(forKey: "token"))
+        KeychainWrapper.standard.removeObject(forKey: "token")
+        callback(KeychainWrapper.standard.removeObject(forKey: "pincode"))
+    }
+    
+    func setPincode(pin: String ,_ callback: (_ success: Bool) -> Void) {
+        callback(KeychainWrapper.standard.set(pin, forKey: "pincode"))
+    }
+    
+    func checkPincode(pin: String, _ callback: (_ success: Bool) -> Void) {
+        let storedPin = KeychainWrapper.standard.string(forKey: "pincode")
+        callback(pin == storedPin)
     }
 }
