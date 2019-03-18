@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Thread.sleep(forTimeInterval: 0.5)
         // Override point for customization after application launch.
 //        KeychainWrapper.standard.removeAllKeys()
-        
         if (Variables.isPincodeSet()) {
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController = mainStoryboard.instantiateViewController(withIdentifier: "pincodeView")
@@ -37,6 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        if(Variables.isPincodeSet()){
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = mainStoryboard.instantiateViewController(withIdentifier: "pincodeView")
+            window?.rootViewController = viewController
+            window?.makeKeyAndVisible()
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

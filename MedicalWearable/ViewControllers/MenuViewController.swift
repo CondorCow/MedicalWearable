@@ -139,12 +139,12 @@ class MenuViewController: UIViewController {
         floaty.addItem(item: informationItem)
         
         //Help button
-        let helpItem = FloatyItem()
-        helpItem.icon = UIImage(named: "questionmark-icon.png")
-        helpItem.handler = { item in
-            
-        }
-        floaty.addItem(item: helpItem)
+//        let helpItem = FloatyItem()
+//        helpItem.icon = UIImage(named: "questionmark-icon.png")
+//        helpItem.handler = { item in
+//
+//        }
+//        floaty.addItem(item: helpItem)
         
         //Logout button
         let logoutItem = FloatyItem()

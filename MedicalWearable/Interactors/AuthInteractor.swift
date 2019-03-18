@@ -52,8 +52,9 @@ class AuthInteractor {
     }
     
     func logout(_ callback: (_ success: Bool) -> Void) {
-        KeychainWrapper.standard.removeObject(forKey: "token")
-        callback(KeychainWrapper.standard.removeObject(forKey: "pincode"))
+        callback(KeychainWrapper.standard.removeAllKeys())
+//        KeychainWrapper.standard.removeObject(forKey: "token")
+//        callback(KeychainWrapper.standard.removeObject(forKey: "pincode"))
     }
     
     func setPincode(pin: String ,_ callback: (_ success: Bool) -> Void) {
