@@ -195,7 +195,6 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             measurements.append(measurement)
         }
-        print(measurements)
     }
     
     func retrieveMeasurementTypesAndSections() {
@@ -215,7 +214,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func saveMeasurements(){//(callback: @escaping (_ success: Bool, _ err: String) -> Void) {
+    func saveMeasurements() {
         if let clientNumber = selectedClient?.clientNumber {
             interactor.postMeasurements(clientNumber: clientNumber, measurements: measurements) { success, err in
                 if success {
@@ -386,6 +385,18 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
                         nextVital()
                     case "bloodpressure":
                         print("TODO: Bloodpressure")
+                        let measurement = measurements.first { m in
+                            m.measurementTypeId == current._id
+                        }
+//                        print(measurement?.values[0].section!.name)
+                        measurement?.values[0].value = String(Int.random(in: 60 ... 85))
+                        measurement?.values[1].value = String(Int.random(in: 100 ... 135))
+                        
+//                        measurements.forEach { m in
+//                            if (m.measurementTypeId == current._id) {
+//
+//                            }
+//                        }
                         nextVital()
                     default:
                         print("TODO: The rest")
