@@ -49,6 +49,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -93,8 +94,8 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         progressHUD = M13ProgressHUD(progressView: M13ProgressViewPie())
         progressHUD.progressViewSize = CGSize(width: 60.0, height: 60.0)
         progressHUD.animationPoint = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
-        progressHUD.primaryColor = UIColor.flatMint()
-        progressHUD.secondaryColor = UIColor.flatMint()
+        progressHUD.primaryColor = UIColor(hexString: "f7b701")
+        progressHUD.secondaryColor = UIColor(hexString: "f7b701")
         view.addSubview(progressHUD)
     }
     
@@ -238,8 +239,14 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
             showAlert(title: "Er ging iets mis", message: "Selecteer een of meerdere meting types")
         } else {
             if bluetoothState == .poweredOn {
-//                manager.cancelPeripheralConnection(newWear)
-                manager?.scanForPeripherals(withServices: nil, options: nil)
+                self.newWear = manager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Variables.connectedServiceUUID)]).first
+                if(self.newWear == nil){
+                    manager?.scanForPeripherals(withServices: nil, options: nil)
+                } else {
+                    setup = 0
+                    manager.connect(self.newWear, options: nil)
+//                    writeToCharacteristic()
+                }
                 
                 progressHUD.show(true)
             } else {
@@ -271,8 +278,8 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        print("Name: \(peripheral.name ?? "")")
-        print("Identifier: \(peripheral.identifier)")
+//        print("Name: \(peripheral.name ?? "")")
+//        print("Identifier: \(peripheral.identifier)")
         if progressHUD.progress != 0.15 {
             changeProgressHudStatus(progressValue: 0.15, withStatus: "Searching for \(wearableName)")
         }
@@ -307,6 +314,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("did connect")
         peripheral.delegate = self
         peripheral.discoverServices(nil)
     }
@@ -326,6 +334,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: Bluetooth - Peripheral
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        print("discovered services")
         if let servicePeripherals = peripheral.services as [CBService]!
         {
             for service in servicePeripherals{
@@ -337,6 +346,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         self.service = service
+        print("SERVICE UUID", service.uuid)
         
         if let characteristicArray = service.characteristics as [CBCharacteristic]!
         {
@@ -388,15 +398,9 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
                         let measurement = measurements.first { m in
                             m.measurementTypeId == current._id
                         }
-//                        print(measurement?.values[0].section!.name)
                         measurement?.values[0].value = String(Int.random(in: 60 ... 85))
                         measurement?.values[1].value = String(Int.random(in: 100 ... 135))
                         
-//                        measurements.forEach { m in
-//                            if (m.measurementTypeId == current._id) {
-//
-//                            }
-//                        }
                         nextVital()
                     default:
                         print("TODO: The rest")
@@ -418,16 +422,18 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             changeProgressHudStatus(progressValue: 0.5, withStatus: "Gegevens worden opgeslagen")
             saveMeasurements()
+            setup = 0
         }
     }
     
     func writeToCharacteristic() {
-        if self.service == nil || self.newWear == nil {
-            showAlert(title: "Er ging iets mis", message: "Connectie verloren")
-        } else {
-            let data = measurementTypes[selectedVitals[currentIndex]].bytes
-            newWear.writeValue(Data(data), for: write!, type: .withResponse)
-        }
+//        if self.service == nil || self.newWear == nil {
+//            showAlert(title: "Er ging iets mis", message: "Connectie verloren")
+//        } else {
+        print("NewWear", newWear)
+        let data = measurementTypes[selectedVitals[currentIndex]].bytes
+        newWear.writeValue(Data(data), for: write!, type: .withResponse)
+//        }
     }
     
     // MARK: View
