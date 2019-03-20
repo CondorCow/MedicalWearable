@@ -281,7 +281,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        print("Name: \(peripheral.name ?? "")")
 //        print("Identifier: \(peripheral.identifier)")
         if progressHUD.progress != 0.15 {
-            changeProgressHudStatus(progressValue: 0.15, withStatus: "Searching for \(wearableName)")
+            changeProgressHudStatus(progressValue: 0.15, withStatus: "Zoeken naar \(wearableName)")
         }
         
         if !timeOutRunning {
@@ -290,7 +290,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("Timeout reached")
                 if !self.finishedSearch {
                     self.progressHUD.hide(true)
-                    let alert = UIAlertController(title: "Error", message: "No \(self.wearableName) found", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error", message: "Geen \(self.wearableName) gevonden", preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                         self.navigationController?.popViewController(animated: true)
                         self.dismiss(animated: true, completion: nil)
@@ -304,7 +304,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
         if(peripheral.identifier.uuidString.contains("14140") || peripheral.name?.contains("C80_80") == true) {
             finishedSearch = true
             print("Q8 found")
-            changeProgressHudStatus(progressValue: 0.55, withStatus: "Connecting to \(wearableName)")
+            changeProgressHudStatus(progressValue: 0.55, withStatus: "Verbinden met \(wearableName)")
             self.newWear = peripheral
             self.newWear.delegate = self
             
@@ -321,7 +321,7 @@ class MonitorViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Disconnected")
-        let alert = UIAlertController(title: "Connection error", message: "\(wearableName) got disconnected. Please reconnect the \(wearableName).", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Connectie error", message: "Verbinding met \(wearableName) verbroken. Verbind \(wearableName) opnieuw.", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
             self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)

@@ -296,6 +296,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tej-y2-PId">
+                                <rect key="frame" x="104" y="131" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="C9X-Cw-pYo"/>
@@ -303,6 +310,7 @@
                     <connections>
                         <outlet property="continueButton" destination="EPK-Pg-4OA" id="QWF-qk-MNa"/>
                         <outlet property="errorLabel" destination="pYh-fv-jHi" id="THR-HI-8yE"/>
+                        <outlet property="informationLabel" destination="tej-y2-PId" id="Mui-cQ-mtj"/>
                         <outlet property="pincodeTextField" destination="MMz-Ls-wp4" id="ssd-yQ-qr0"/>
                         <outlet property="titleLabel" destination="MKY-hO-yAt" id="QY3-yT-tyL"/>
                         <segue destination="c3L-qk-102" kind="show" identifier="goToMain" id="PjM-zF-VNK"/>
