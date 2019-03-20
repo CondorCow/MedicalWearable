@@ -44,14 +44,13 @@ class PincodeViewController: UIViewController {
         informationLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
-            make.height.equalTo(100)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().inset(20)
         }
         
         informationLabel.numberOfLines = 0
         informationLabel.text = newPincode ?
-            "Gebruik uw pincode wanneer u terug in de app komt na het sluiten van de app. Deze pincode is 24 uur geldig." :
+            "Gebruik uw pincode wanneer u, na het sluiten, terug komt in de app. Deze pincode is 24 uur geldig." :
             ""
         informationLabel.textColor = UIColor.flatGray()
         informationLabel.font = informationLabel.font.withSize(18)
